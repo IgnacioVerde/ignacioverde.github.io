@@ -1,0 +1,47 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  eyebrow?: string;
+  stack?: string[];
+  confidential?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  eyebrow = 'Case Study',
+  stack = [],
+  confidential = false,
+} = Astro.props;
+---
+
+<BaseLayout title={`${title} — Ignacio Verde`} description={subtitle}>
+  <main>
+    <section class="case-hero container">
+      <a class="back-link" href="/#work">← Back to selected work</a>
+      <div class="eyebrow">{eyebrow}</div>
+      <h1 class="case-title">{title}</h1>
+      <p class="case-subtitle">{subtitle}</p>
+
+      {stack.length > 0 && (
+        <div class="stack case-stack">
+          {stack.map((item) => <span class="tag">{item}</span>)}
+        </div>
+      )}
+
+      {confidential && (
+        <div class="confidential-note case-note">
+          This project is covered by confidentiality obligations. The case study
+          intentionally omits sensitive data, source code and internal infrastructure details.
+        </div>
+      )}
+    </section>
+
+    <section class="case-content container">
+      <slot />
+    </section>
+  </main>
+</BaseLayout>

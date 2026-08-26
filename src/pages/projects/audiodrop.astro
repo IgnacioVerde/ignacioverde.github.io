@@ -1,0 +1,32 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="AudioDrop"
+  subtitle="Music applications for desktop and Android, built as separate projects with a shared long-term product direction."
+  eyebrow="Open Source"
+  stack={['Python', 'PyQt6', 'yt-dlp', 'FFmpeg', 'Kotlin', 'Jetpack Compose', 'Media3']}
+>
+  <div class="case-grid">
+    <article class="case-panel">
+      <h2>Desktop</h2>
+      <p>
+        AudioDrop Desktop is a Windows music application with local playback, playlists,
+        YouTube search, previews, MP3 downloads, playlist downloads, a visualizer and
+        dependency management for yt-dlp and FFmpeg.
+      </p>
+      <p><a class="inline-link" href="https://github.com/IgnacioVerde/audiodrop-desktop" target="_blank" rel="noreferrer">View Desktop repository ↗</a></p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Android</h2>
+      <p>
+        The Android project is an active work in progress built with Kotlin, Jetpack Compose
+        and Media3. Local music playback is functional, while additional features are still
+        being implemented.
+      </p>
+      <p><a class="inline-link" href="https://github.com/IgnacioVerde/audiodrop-android" target="_blank" rel="noreferrer">View Android repository ↗</a></p>
+    </article>
+  </div>
+</CaseStudyLayout>

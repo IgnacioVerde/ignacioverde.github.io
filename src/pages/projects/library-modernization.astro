@@ -1,0 +1,39 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="Legacy Library Modernization"
+  subtitle="Recovery and modernization of a large bibliographic catalog from discontinued legacy software into a modern digital library."
+  eyebrow="Confidential Project · Case Study"
+  stack={['Python', 'Omeka', 'ETL', 'Legacy Systems', 'Automation']}
+  confidential={true}
+>
+  <div class="case-grid">
+    <article class="case-panel">
+      <h2>Legacy Recovery</h2>
+      <p>
+        The original catalog depended on discontinued tooling that required a Windows XP
+        virtual machine for export. A custom Python pipeline parsed, normalized and preserved
+        the legacy bibliographic data for migration.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Data Migration</h2>
+      <p>
+        The recovery pipeline repaired legacy encodings, mapped bibliographic fields into a
+        modern MARC-like structure and preserved raw source fields for traceability and future migrations.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Media Automation</h2>
+      <p>
+        A separate workflow processes exported WhatsApp media, associates photos with inventory
+        numbers and supports bulk linking of book images to catalog records, reducing thousands
+        of manual operations to a batch process.
+      </p>
+    </article>
+  </div>
+</CaseStudyLayout>

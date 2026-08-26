@@ -1,0 +1,41 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const tone = project.type === 'Open Source'
+  ? 'tone-open'
+  : project.type === 'Confidential Project'
+    ? 'tone-confidential'
+    : project.type === 'Professional Tool'
+      ? 'tone-tool'
+      : 'tone-personal';
+---
+
+<article class={`project ${tone}`}>
+  <div class="project-top">
+    <div class="project-type">{project.type}</div>
+    <div class="project-pill">{project.confidential ? 'Case Study Only' : project.status}</div>
+  </div>
+
+  <h3>{project.title}</h3>
+  <p class="project-description">{project.description}</p>
+
+  <div class="stack">
+    {project.stack.map((tech) => <span class="tag">{tech}</span>)}
+  </div>
+
+  <div class="project-footer">
+    <a href={`/projects/${project.slug}`}>View {project.confidential ? 'Case Study' : 'Project'} →</a>
+
+    {project.github && (
+      <a class="project-secondary-link" href={project.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+    )}
+
+    {project.confidential && <span class="locked">Private source</span>}
+  </div>
+</article>

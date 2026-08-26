@@ -1,0 +1,38 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="RedGesta"
+  subtitle="A modern educational platform integrating a legacy third-party API with a local Laravel application and database."
+  eyebrow="Confidential Project · Case Study"
+  stack={['Laravel', 'Docker', 'MySQL', 'API Integration', 'Linux']}
+  confidential={true}
+>
+  <div class="case-grid">
+    <article class="case-panel">
+      <h2>Problem</h2>
+      <p>
+        The platform needed to present course and institution information through a modern
+        interface while the operational backend remained owned by an external provider.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Data Strategy</h2>
+      <p>
+        Structural data is synchronized locally for reliable pages and search. Volatile data,
+        such as pricing and promotions, is retrieved at runtime because the external provider
+        remains the source of truth.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Implementation</h2>
+      <p>
+        The project includes a Laravel frontend/backend, Docker deployment, local persistence,
+        full synchronization through Artisan, search, lead forms and production infrastructure.
+      </p>
+    </article>
+  </div>
+</CaseStudyLayout>

@@ -1,0 +1,37 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="Academic Data Automation"
+  subtitle="Automation for extracting, normalizing and consolidating academic information from a closed legacy web system without API or database access."
+  eyebrow="Confidential Project · Case Study"
+  stack={['Python', 'Playwright', 'BeautifulSoup', 'Pandas', 'Excel', 'Oracle APEX']}
+  confidential={true}
+>
+  <div class="case-grid">
+    <article class="case-panel">
+      <h2>Constraint</h2>
+      <p>
+        The source system offered neither API nor database access. Staff otherwise had to navigate
+        career by career and student by student to build a consolidated roster.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Automation</h2>
+      <p>
+        The workflow uses authenticated browser automation, custom pagination handling,
+        session reuse, throttling and direct HTML parsing to gather and normalize records.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Reliability</h2>
+      <p>
+        Incremental CSV/XLSX persistence, error logs and saved debug HTML reduce the cost of
+        long-running failures and make the extraction process recoverable and auditable.
+      </p>
+    </article>
+  </div>
+</CaseStudyLayout>

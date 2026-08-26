@@ -1,0 +1,36 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="INAES Regulatory Generator"
+  subtitle="A desktop automation tool that converts spreadsheet data into strict fixed-width regulatory files with validation and integrity checks."
+  eyebrow="Professional Tool · Case Study"
+  stack={['Python', 'Tkinter', 'Excel', 'OpenPyXL', 'Validation', 'PyInstaller']}
+>
+  <div class="case-grid">
+    <article class="case-panel">
+      <h2>Problem</h2>
+      <p>
+        Regulatory submissions require rigid legacy TXT structures where headers, data records
+        and trailers must satisfy exact field and byte-length requirements.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Solution</h2>
+      <p>
+        The desktop application starts from a controlled spreadsheet template, validates and
+        normalizes the data, applies business rules and produces the required output files.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Integrity</h2>
+      <p>
+        The generated files are validated again at byte level to ensure each fixed-width record
+        and total file size conform to the specification before delivery.
+      </p>
+    </article>
+  </div>
+</CaseStudyLayout>

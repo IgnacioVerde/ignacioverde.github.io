@@ -1,0 +1,67 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="ShibusenRO"
+  subtitle="A full-stack game platform combining a modern web application, legacy MMORPG infrastructure, payments, shared identity and custom client tooling."
+  eyebrow="Personal Project · Case Study"
+  stack={['Laravel', 'Docker', 'MariaDB', 'C#', 'Oracle Cloud', 'Cloudflare', 'rAthena']}
+>
+  <div class="case-grid">
+    <article class="case-panel">
+      <h2>Overview</h2>
+      <p>
+        ShibusenRO started as an independent learning project: connect an online game server
+        with a modern web platform and make both systems behave as a single product.
+      </p>
+      <p>
+        The result combines account management, game data, payments, in-game currency,
+        a web shop, cloud infrastructure, a custom launcher and update tooling.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Architecture</h2>
+      <p>
+        The platform runs on Oracle Cloud ARM64 using Docker Compose. rAthena login, char
+        and map processes are separated into independent services, alongside Laravel web
+        applications and MariaDB. Caddy and Cloudflare handle the public web layer.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Integration</h2>
+      <p>
+        A dedicated Laravel service layer integrates directly with the legacy game schema.
+        Web accounts, characters, rankings and the in-game cash balance are based on the
+        real rAthena data model rather than a disconnected copy.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Payments & Transactions</h2>
+      <p>
+        Mercado Pago integration includes order creation, signed webhook validation,
+        idempotent crediting and transactional shop purchases designed to avoid duplicate
+        charges or partial item delivery.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Client Tooling</h2>
+      <p>
+        A custom Windows launcher built with C#/.NET manages client versions, file manifests,
+        patching and a separate updater capable of updating the launcher itself.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <h2>Operations</h2>
+      <p>
+        The project includes Linux administration, firewall rules, Cloudflare/DNS,
+        container networking, backups with integrity checks and automated community tooling.
+      </p>
+    </article>
+  </div>
+</CaseStudyLayout>

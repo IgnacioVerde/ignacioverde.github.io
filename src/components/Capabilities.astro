@@ -1,0 +1,19 @@
+---
+import { capabilities } from '../data/projects';
+---
+
+<section id="capabilities" class="section container">
+  <div class="section-heading">
+    <h2>Capabilities</h2>
+    <p>
+      My work usually lives in the space between application development,
+      infrastructure, integration and automation.
+    </p>
+  </div>
+
+  <div class="capability-grid">
+    {capabilities.map((capability) => (
+      <div class="capability"><span>{capability}</span></div>
+    ))}
+  </div>
+</section>
