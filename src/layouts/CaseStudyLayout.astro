@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import type { ProjectLink } from '../data/projects';
 
 interface Props {
   title: string;
@@ -7,6 +8,7 @@ interface Props {
   eyebrow?: string;
   stack?: string[];
   confidential?: boolean;
+  links?: ProjectLink[];
 }
 
 const {
@@ -15,6 +17,7 @@ const {
   eyebrow = 'Case Study',
   stack = [],
   confidential = false,
+  links = [],
 } = Astro.props;
 ---
 
@@ -32,10 +35,20 @@ const {
         </div>
       )}
 
+      {links.length > 0 && (
+        <div class="case-actions">
+          {links.map((link, index) => (
+            <a class={`button ${index === 0 ? 'primary' : 'secondary'}`} href={link.url} target="_blank" rel="noreferrer">
+              {link.label} ↗
+            </a>
+          ))}
+        </div>
+      )}
+
       {confidential && (
         <div class="confidential-note case-note">
-          This project is covered by confidentiality obligations. The case study
-          intentionally omits sensitive data, source code and internal infrastructure details.
+          <strong>Confidential Project — Case Study Only.</strong> This page intentionally omits sensitive data,
+          customer information, internal endpoints, credentials, source code and non-public infrastructure details.
         </div>
       )}
     </section>

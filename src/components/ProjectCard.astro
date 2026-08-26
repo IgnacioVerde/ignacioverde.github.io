@@ -30,12 +30,13 @@ const tone = project.type === 'Open Source'
   </div>
 
   <div class="project-footer">
-    <a href={`/projects/${project.slug}`}>View {project.confidential ? 'Case Study' : 'Project'} →</a>
+    <a class="project-main-link" href={`/projects/${project.slug}`}>View Case Study →</a>
 
-    {project.github && (
-      <a class="project-secondary-link" href={project.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-    )}
-
-    {project.confidential && <span class="locked">Private source</span>}
+    <div class="project-link-group">
+      {project.links?.slice(0, 2).map((link) => (
+        <a class="project-secondary-link" href={link.url} target="_blank" rel="noreferrer">{link.label} ↗</a>
+      ))}
+      {project.confidential && <span class="locked">Private source</span>}
+    </div>
   </div>
 </article>

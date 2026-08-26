@@ -1,3 +1,8 @@
+export type ProjectLink = {
+  label: string;
+  url: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -5,10 +10,15 @@ export type Project = {
   description: string;
   stack: string[];
   status: string;
-  github?: string;
-  live?: string;
   confidential?: boolean;
   featured?: boolean;
+  links?: ProjectLink[];
+};
+
+export type AdditionalWork = {
+  title: string;
+  description: string;
+  stack: string[];
 };
 
 export const projects: Project[] = [
@@ -17,28 +27,35 @@ export const projects: Project[] = [
     title: 'ShibusenRO',
     type: 'Personal Project',
     description:
-      'Full-stack platform integrating a Laravel web application with a legacy MMORPG server, shared authentication, payments, in-game economy, a custom launcher and cloud infrastructure.',
+      'End-to-end online game platform integrating Laravel, rAthena, shared identity, payments, a transactional web shop, custom client tooling and cloud infrastructure.',
     stack: ['Laravel', 'Docker', 'MariaDB', 'C#', 'Oracle Cloud', 'Cloudflare'],
-    status: 'Case Study',
+    status: 'Flagship Case Study',
     featured: true,
+    links: [
+      { label: 'Community', url: 'https://shibusen.online' },
+      { label: 'RO Platform', url: 'https://ro.shibusen.online' },
+    ],
   },
   {
     slug: 'audiodrop',
     title: 'AudioDrop',
     type: 'Open Source',
     description:
-      'Desktop and Android music projects focused on local playback, playlists, media discovery, audio downloading and native application experiences.',
+      'Music software spanning a production-ready Windows desktop app and an Android project in active development, with playback, library management and media tooling.',
     stack: ['Python', 'PyQt6', 'Kotlin', 'Jetpack Compose', 'Media3', 'FFmpeg'],
     status: 'Open Source',
-    github: 'https://github.com/IgnacioVerde/audiodrop-desktop',
     featured: true,
+    links: [
+      { label: 'Desktop GitHub', url: 'https://github.com/IgnacioVerde/audiodrop-desktop' },
+      { label: 'Android GitHub', url: 'https://github.com/IgnacioVerde/audiodrop-android' },
+    ],
   },
   {
     slug: 'redgesta',
     title: 'RedGesta',
     type: 'Confidential Project',
     description:
-      'Modern educational platform built around a legacy third-party API, combining locally persisted structural data with real-time external pricing and promotions.',
+      'Modern Laravel education platform built around a legacy third-party API, balancing local persistence with real-time external data and production operations.',
     stack: ['Laravel', 'Docker', 'MySQL', 'API Integration', 'Linux'],
     status: 'Case Study Only',
     confidential: true,
@@ -49,7 +66,7 @@ export const projects: Project[] = [
     title: 'Legacy Library Modernization',
     type: 'Confidential Project',
     description:
-      'Migration and modernization of a 20,000+ item bibliographic catalog from discontinued legacy software, including data recovery, normalization and automated media processing.',
+      'Recovery and migration of a 20,000+ item bibliographic catalog from discontinued software, followed by automated media processing and modern digital access.',
     stack: ['Python', 'Omeka', 'ETL', 'Legacy Systems', 'Automation'],
     status: 'Case Study Only',
     confidential: true,
@@ -60,7 +77,7 @@ export const projects: Project[] = [
     title: 'Academic Data Automation',
     type: 'Confidential Project',
     description:
-      'Internal automation for extracting, normalizing and consolidating academic information from a closed legacy system without API or database access.',
+      'Internal automation for extracting, normalizing and consolidating academic information from a closed legacy web system without API or database access.',
     stack: ['Python', 'Playwright', 'Pandas', 'Excel', 'Automation'],
     status: 'Case Study Only',
     confidential: true,
@@ -69,11 +86,12 @@ export const projects: Project[] = [
   {
     slug: 'inaes',
     title: 'INAES Regulatory Generator',
-    type: 'Professional Tool',
+    type: 'Confidential Project',
     description:
-      'Desktop application that transforms spreadsheet data into strict fixed-width regulatory files with validation, business rules and byte-level integrity checks.',
+      'Desktop workflow that converts spreadsheet exports into strict regulatory fixed-width files with validation, normalization, business rules and byte-level verification.',
     stack: ['Python', 'Excel', 'Validation', 'PyInstaller', 'Desktop'],
-    status: 'Case Study',
+    status: 'Case Study Only',
+    confidential: true,
     featured: true,
   },
 ];
@@ -91,4 +109,43 @@ export const capabilities = [
   'Desktop Applications',
   'WordPress & CMS',
   'AI-Assisted Development',
+];
+
+export const additionalWork: AdditionalWork[] = [
+  {
+    title: 'Institutional Web Platforms',
+    description:
+      'Production WordPress and static institutional websites, category-driven publishing workflows, ongoing content operations and Moodle administration.',
+    stack: ['WordPress', 'Elementor', 'Moodle', 'HTML/CSS'],
+  },
+  {
+    title: 'Linux, DNS & Web Operations',
+    description:
+      'VPS administration, Linux hardening, ports and firewall rules, Cloudflare, DNS, HTTPS, reverse proxies, updates, domain maintenance and institutional mail services.',
+    stack: ['Linux', 'Cloudflare', 'DNS', 'Reverse Proxy', 'TLS'],
+  },
+  {
+    title: 'Retail POS & Ecommerce',
+    description:
+      'FacturaScripts point-of-sale deployment with barcode and ticket hardware, regional configuration for Argentina, plus a separate WooCommerce storefront with Mercado Pago.',
+    stack: ['FacturaScripts', 'WooCommerce', 'Mercado Pago', 'POS'],
+  },
+  {
+    title: 'Odoo Pricing Automation',
+    description:
+      'Small Python/Odoo ORM utility created for a nursery to update product cost and sale prices in bulk from CSV instead of editing records one by one.',
+    stack: ['Python', 'Odoo ORM', 'CSV', 'ERP Automation'],
+  },
+  {
+    title: 'Community Automation',
+    description:
+      'Discord automation for roles, channels, permissions, persistent verification and repeatable server configuration as part of an online community platform.',
+    stack: ['Python', 'discord.py', 'Automation'],
+  },
+  {
+    title: 'Experimental AI Work',
+    description:
+      'Exploration of language-model architecture and training concepts through personal ALFA/AlfaLLM experiments, paused when compute requirements exceeded available infrastructure.',
+    stack: ['LLMs', 'Python', 'Research', 'Prototyping'],
+  },
 ];

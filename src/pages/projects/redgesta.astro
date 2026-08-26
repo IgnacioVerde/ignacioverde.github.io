@@ -4,35 +4,104 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 
 <CaseStudyLayout
   title="RedGesta"
-  subtitle="A modern educational platform integrating a legacy third-party API with a local Laravel application and database."
+  subtitle="A production education platform that modernizes the presentation and local data model around a legacy third-party API while preserving the external provider as the operational source of truth where required."
   eyebrow="Confidential Project · Case Study"
-  stack={['Laravel', 'Docker', 'MySQL', 'API Integration', 'Linux']}
+  stack={['Laravel', 'PHP', 'Docker', 'MySQL', 'API Integration', 'Linux', 'Cloudflare', 'Email']}
   confidential={true}
 >
-  <div class="case-grid">
-    <article class="case-panel">
-      <h2>Problem</h2>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Problem</div>
+      <h2>A modern experience on top of a legacy dependency.</h2>
       <p>
-        The platform needed to present course and institution information through a modern
-        interface while the operational backend remained owned by an external provider.
+        The platform needed its own modern site, catalog structure, search and lead-generation flow while course and enrollment operations still depended on an external education provider and its legacy API.
       </p>
     </article>
 
     <article class="case-panel">
-      <h2>Data Strategy</h2>
+      <div class="panel-kicker">My Role</div>
+      <h2>End-to-end implementation and production operations.</h2>
       <p>
-        Structural data is synchronized locally for reliable pages and search. Volatile data,
-        such as pricing and promotions, is retrieved at runtime because the external provider
-        remains the source of truth.
-      </p>
-    </article>
-
-    <article class="case-panel">
-      <h2>Implementation</h2>
-      <p>
-        The project includes a Laravel frontend/backend, Docker deployment, local persistence,
-        full synchronization through Artisan, search, lead forms and production infrastructure.
+        I handled the Laravel application, frontend implementation, API integration, local data model, Docker deployment, Linux hosting, domain/DNS configuration and ongoing infrastructure maintenance.
       </p>
     </article>
   </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Data Strategy</div>
+        <h2>Persist what should be local. Fetch what must stay authoritative.</h2>
+      </div>
+      <p>The central architectural decision was separating structural data from volatile provider-owned data.</p>
+    </div>
+
+    <div class="case-grid two">
+      <article class="case-panel">
+        <h2>Persistent structural data</h2>
+        <p>
+          A full synchronization process imports entities, courses, careers and the information required to build searchable, indexable pages locally. New records are inserted and existing records are updated because course content can change over time.
+        </p>
+        <p>The synchronization runs through Laravel Artisan and creates a local operational representation instead of rebuilding every page directly from the remote API.</p>
+      </article>
+
+      <article class="case-panel">
+        <h2>Runtime volatile data</h2>
+        <p>
+          Pricing and promotions remain provider-owned and are retrieved when a page is opened because they can change frequently and RedGesta is not the authoritative system for those values.
+        </p>
+        <p>Image references can be persisted locally while still pointing at the provider's assets.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Decoupling Path</div>
+      <h2>Local persistence as a future exit strategy.</h2>
+      <p>
+        Although enrollment currently continues through external systems, continuously materializing the structural catalog into a RedGesta-owned database reduces long-term coupling. If the platform needs to become more independent later, the core entities and catalog already exist locally rather than being trapped exclusively behind the third-party API.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Product Experience</div>
+        <h2>Searchable, dedicated course pages.</h2>
+        <p>
+          The synchronized catalog powers a modern interface with individual institution/course pages, local search and a cleaner presentation layer than the legacy source system.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Lead Flow</div>
+        <h2>Interest captured without replacing enrollment infrastructure.</h2>
+        <p>
+          Contact forms generate email notifications for staff to follow up with interested users, while links to the provider's operational systems remain available for processes not yet owned by RedGesta.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Operations</div>
+      <h2>Application and infrastructure under the same ownership.</h2>
+      <p>
+        The Laravel application runs containerized on production hosting. I also manage Linux, updates, domain/DNS, Cloudflare, HTTPS, service exposure and institutional mail configuration associated with the platform.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Takeaway</div>
+      <h2>Modernization without pretending the legacy dependency does not exist.</h2>
+      <p>
+        RedGesta is a practical integration project: preserve the external system where it remains authoritative, build a local model where ownership and performance matter, and create a path toward greater independence without forcing a risky all-at-once rewrite.
+      </p>
+    </article>
+  </section>
 </CaseStudyLayout>

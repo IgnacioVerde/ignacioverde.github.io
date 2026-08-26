@@ -1,0 +1,28 @@
+---
+import { additionalWork } from '../data/projects';
+---
+
+<section id="additional" class="section container">
+  <div class="section-heading">
+    <div>
+      <div class="eyebrow compact">Additional Work</div>
+      <h2>More than the flagship projects.</h2>
+    </div>
+    <p>
+      Smaller deployments, infrastructure responsibilities and targeted automation
+      that show the breadth of day-to-day engineering work.
+    </p>
+  </div>
+
+  <div class="additional-grid">
+    {additionalWork.map((item) => (
+      <article class="additional-card">
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+        <div class="stack compact-stack">
+          {item.stack.map((tech) => <span class="tag">{tech}</span>)}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

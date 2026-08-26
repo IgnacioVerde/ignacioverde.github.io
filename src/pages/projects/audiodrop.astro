@@ -4,29 +4,153 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 
 <CaseStudyLayout
   title="AudioDrop"
-  subtitle="Music applications for desktop and Android, built as separate projects with a shared long-term product direction."
-  eyebrow="Open Source"
-  stack={['Python', 'PyQt6', 'yt-dlp', 'FFmpeg', 'Kotlin', 'Jetpack Compose', 'Media3']}
+  subtitle="A music software project spanning a Windows desktop application and an Android implementation, focused on playback, library management, media discovery and native user experiences."
+  eyebrow="Open Source · Desktop + Android"
+  stack={['Python', 'PyQt6', 'Qt Multimedia', 'yt-dlp', 'FFmpeg', 'PyInstaller', 'Inno Setup', 'Kotlin', 'Jetpack Compose', 'Media3', 'ExoPlayer', 'DataStore']}
+  links={[
+    { label: 'Desktop GitHub', url: 'https://github.com/IgnacioVerde/audiodrop-desktop' },
+    { label: 'Android GitHub', url: 'https://github.com/IgnacioVerde/audiodrop-android' },
+  ]}
 >
-  <div class="case-grid">
-    <article class="case-panel">
-      <h2>Desktop</h2>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Desktop</div>
+      <h2>A complete Windows music application.</h2>
       <p>
-        AudioDrop Desktop is a Windows music application with local playback, playlists,
-        YouTube search, previews, MP3 downloads, playlist downloads, a visualizer and
-        dependency management for yt-dlp and FFmpeg.
+        AudioDrop Desktop combines a local music player, playlist manager and YouTube audio workflow in one PyQt6 application. It is packaged for Windows and designed so non-technical users do not need to manually install or configure media tooling.
       </p>
-      <p><a class="inline-link" href="https://github.com/IgnacioVerde/audiodrop-desktop" target="_blank" rel="noreferrer">View Desktop repository ↗</a></p>
+      <p>
+        The desktop version is the more mature implementation and includes the main playback, search, preview, download and library workflows.
+      </p>
     </article>
 
     <article class="case-panel">
-      <h2>Android</h2>
+      <div class="panel-kicker">Android</div>
+      <h2>Native Android implementation in progress.</h2>
       <p>
-        The Android project is an active work in progress built with Kotlin, Jetpack Compose
-        and Media3. Local music playback is functional, while additional features are still
-        being implemented.
+        AudioDrop Android is a separate Kotlin/Jetpack Compose project that already implements a functional local music experience using Media3/ExoPlayer. It remains explicitly marked as work in progress while downloads, persistent playlists, history and additional library features are completed.
       </p>
-      <p><a class="inline-link" href="https://github.com/IgnacioVerde/audiodrop-android" target="_blank" rel="noreferrer">View Android repository ↗</a></p>
     </article>
   </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Desktop Features</div>
+        <h2>Playback, discovery and downloading.</h2>
+      </div>
+      <p>The desktop application is designed as a usable product rather than a collection of command-line media scripts.</p>
+    </div>
+
+    <div class="feature-list large">
+      <span>Local music library</span>
+      <span>Integrated player</span>
+      <span>Custom playlists</span>
+      <span>Shuffle & repeat</span>
+      <span>YouTube search</span>
+      <span>Audio preview</span>
+      <span>Single-track download</span>
+      <span>Playlist download</span>
+      <span>MP3 conversion</span>
+      <span>Download queue</span>
+      <span>Animated visualizer</span>
+      <span>Light / dark themes</span>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Media Tooling</div>
+        <h2>yt-dlp + FFmpeg without manual setup.</h2>
+        <p>
+          AudioDrop maintains local copies of yt-dlp, FFmpeg and ffprobe under the user's application data directory. Missing tools can be detected and prepared from the application instead of requiring the user to understand PATH configuration or command-line dependencies.
+        </p>
+        <p>
+          The project also provides a path to refresh the media tools when newer versions are needed.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Responsiveness</div>
+        <h2>Long-running operations stay out of the UI thread.</h2>
+        <p>
+          Search, preview preparation, downloads and tool-management operations are moved into Qt worker threads where appropriate so the desktop interface can remain responsive while network or media tasks are executing.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Player UX</div>
+        <h2>More than a downloader.</h2>
+        <p>
+          The application includes playback controls, seek, volume, previous/next, shuffle, repeat, playlist persistence, local library filtering and an animated visual component implemented with Qt drawing APIs.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Distribution</div>
+        <h2>Packaged as a Windows application.</h2>
+        <p>
+          PyInstaller configuration turns the Python application into a distributable executable and Inno Setup support provides a conventional Windows installer workflow.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Android Architecture</div>
+        <h2>Native playback with modern Android tooling.</h2>
+      </div>
+      <p>The Android project is intentionally honest about its current state: functional core, unfinished product.</p>
+    </div>
+
+    <div class="case-grid two">
+      <article class="case-panel">
+        <h2>Implemented</h2>
+        <div class="feature-list">
+          <span>Recursive local-library scanning</span>
+          <span>Audio metadata reading</span>
+          <span>Media3 / ExoPlayer playback</span>
+          <span>Playback queue</span>
+          <span>Seek / next / previous</span>
+          <span>Shuffle & repeat</span>
+          <span>Library search</span>
+          <span>Mini player</span>
+          <span>Persistent settings with DataStore</span>
+        </div>
+      </article>
+
+      <article class="case-panel">
+        <h2>In progress</h2>
+        <div class="feature-list subdued">
+          <span>Music downloading</span>
+          <span>Persistent playlists</span>
+          <span>Playback history</span>
+          <span>Local database</span>
+          <span>Audio effects</span>
+          <span>Safe file deletion</span>
+          <span>Cross-platform integration</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Takeaway</div>
+      <h2>Two platforms, one product direction.</h2>
+      <p>
+        AudioDrop demonstrates a different side of my work than infrastructure-heavy projects: native user interfaces, media playback, local storage, external tools, asynchronous workloads, packaging and product iteration.
+      </p>
+      <p>
+        The desktop and Android implementations are currently independent, with future integration planned as the Android version matures.
+      </p>
+    </article>
+  </section>
 </CaseStudyLayout>

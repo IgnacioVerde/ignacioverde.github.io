@@ -4,34 +4,110 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 
 <CaseStudyLayout
   title="Academic Data Automation"
-  subtitle="Automation for extracting, normalizing and consolidating academic information from a closed legacy web system without API or database access."
+  subtitle="An internal Python automation workflow that extracts, normalizes and consolidates academic information from a closed legacy web application where no database or public API access is available."
   eyebrow="Confidential Project · Case Study"
-  stack={['Python', 'Playwright', 'BeautifulSoup', 'Pandas', 'Excel', 'Oracle APEX']}
+  stack={['Python', 'Playwright', 'BeautifulSoup', 'Pandas', 'OpenPyXL', 'Browser Automation', 'Oracle APEX']}
   confidential={true}
 >
-  <div class="case-grid">
-    <article class="case-panel">
-      <h2>Constraint</h2>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Problem</div>
+      <h2>The data exists, but only behind a slow human workflow.</h2>
       <p>
-        The source system offered neither API nor database access. Staff otherwise had to navigate
-        career by career and student by student to build a consolidated roster.
+        The source system exposes the information through a web interface that requires navigating academic programs and individual records one by one. There is no direct database access and no supported API for the required consolidated output.
       </p>
     </article>
 
     <article class="case-panel">
-      <h2>Automation</h2>
+      <div class="panel-kicker">Constraint</div>
+      <h2>Authorized automation without bypassing access controls.</h2>
       <p>
-        The workflow uses authenticated browser automation, custom pagination handling,
-        session reuse, throttling and direct HTML parsing to gather and normalize records.
-      </p>
-    </article>
-
-    <article class="case-panel">
-      <h2>Reliability</h2>
-      <p>
-        Incremental CSV/XLSX persistence, error logs and saved debug HTML reduce the cost of
-        long-running failures and make the extraction process recoverable and auditable.
+        The workflow uses an authorized user session. Login remains manual because the legacy application reacts poorly to automated authentication; once the session is established, the tooling takes over the repetitive navigation and extraction work.
       </p>
     </article>
   </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Architecture</div>
+        <h2>Browser automation where needed, authenticated requests where useful.</h2>
+      </div>
+      <p>The implementation mixes techniques instead of forcing every page through full browser rendering.</p>
+    </div>
+
+    <div class="process-flow vertical-mobile">
+      <span>Manual authorized login</span><b>→</b><span>Playwright session</span><b>→</b><span>Program discovery</span><b>→</b><span>Record extraction</span><b>→</b><span>Normalization</span><b>→</b><span>Excel output</span>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Legacy Navigation</div>
+        <h2>Custom pagination and session handling.</h2>
+        <p>
+          The application uses legacy Oracle APEX navigation patterns and non-trivial pagination. The automation detects the current session, normalizes relative links, identifies academic programs by their real composite identifiers and protects against repeated-page loops.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Efficiency</div>
+        <h2>Reuse the authenticated browser context.</h2>
+        <p>
+          Once the browser session is established, individual record pages can be fetched through authenticated requests attached to the same Playwright context. This avoids rendering a full browser page for every record while preserving the authorized session.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Reliability</div>
+      <h2>A long-running scraper has to survive imperfect systems.</h2>
+      <div class="feature-list large">
+        <span>Configurable pauses / throttling</span>
+        <span>Session-aware navigation</span>
+        <span>Timeout tolerance</span>
+        <span>Pagination loop protection</span>
+        <span>Per-program error capture</span>
+        <span>Incremental CSV persistence</span>
+        <span>Partial XLSX saves</span>
+        <span>HTML debug snapshots</span>
+      </div>
+      <p>
+        The workflow deliberately avoids hammering the source system. Partial results are persisted during execution, so a failure late in a large run does not automatically discard hours of successful extraction.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Normalization</div>
+        <h2>Raw pages become a consistent dataset.</h2>
+        <p>
+          The extraction layer parses HTML, cleans inconsistent values, normalizes identifiers and consolidates data into structured spreadsheets that can be filtered and used operationally without repeating the source-system workflow.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Second Pass</div>
+        <h2>Academic state enrichment.</h2>
+        <p>
+          A complementary process can revisit academic summaries, derive normalized states from the legacy representation and merge the results back into the consolidated dataset using composite program identifiers plus normalized document identifiers.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Takeaway</div>
+      <h2>Automation is valuable when the system cannot be replaced.</h2>
+      <p>
+        This project does not control the legacy application and cannot redesign its database. The engineering value comes from building a respectful, fault-tolerant automation layer around those constraints and turning a repetitive manual task into a repeatable data workflow.
+      </p>
+    </article>
+  </section>
 </CaseStudyLayout>

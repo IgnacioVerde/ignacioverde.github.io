@@ -4,33 +4,123 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 
 <CaseStudyLayout
   title="INAES Regulatory Generator"
-  subtitle="A desktop automation tool that converts spreadsheet data into strict fixed-width regulatory files with validation and integrity checks."
-  eyebrow="Professional Tool · Case Study"
-  stack={['Python', 'Tkinter', 'Excel', 'OpenPyXL', 'Validation', 'PyInstaller']}
+  subtitle="A desktop workflow that converts conventional spreadsheet data into strict regulatory fixed-width files, encapsulating validation rules, normalization and exact byte-level output requirements."
+  eyebrow="Confidential Project · Case Study"
+  stack={['Python', 'Tkinter', 'ttkbootstrap', 'OpenPyXL', 'Excel', 'Fixed-Width Files', 'Validation', 'PyInstaller']}
+  confidential={true}
 >
-  <div class="case-grid">
-    <article class="case-panel">
-      <h2>Problem</h2>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Problem</div>
+      <h2>Modern source data, legacy regulatory output.</h2>
       <p>
-        Regulatory submissions require rigid legacy TXT structures where headers, data records
-        and trailers must satisfy exact field and byte-length requirements.
+        Operational systems can export debt/account information as spreadsheets or CSV files, but the regulator expects rigid TXT formats governed by long technical annexes, fixed field positions and exact record lengths.
+      </p>
+      <p>
+        A single malformed field or incorrect line length can cause the entire submission to be rejected.
       </p>
     </article>
 
     <article class="case-panel">
-      <h2>Solution</h2>
+      <div class="panel-kicker">Solution</div>
+      <h2>Put the specification inside the software.</h2>
       <p>
-        The desktop application starts from a controlled spreadsheet template, validates and
-        normalizes the data, applies business rules and produces the required output files.
-      </p>
-    </article>
-
-    <article class="case-panel">
-      <h2>Integrity</h2>
-      <p>
-        The generated files are validated again at byte level to ensure each fixed-width record
-        and total file size conform to the specification before delivery.
+        Instead of requiring staff to understand the complete text-file specification, the desktop application provides a controlled spreadsheet template, validates the content and produces the required Alta and Modificación outputs automatically.
       </p>
     </article>
   </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Workflow</div>
+        <h2>From spreadsheet to validated regulatory file.</h2>
+      </div>
+      <p>Validation happens before generation and integrity is checked again after generation.</p>
+    </div>
+
+    <div class="process-flow vertical-mobile">
+      <span>Template / Excel</span><b>→</b><span>Validation</span><b>→</b><span>Normalization</span><b>→</b><span>Business Rules</span><b>→</b><span>Fixed-width TXT</span><b>→</b><span>Byte verification</span>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Input Design</div>
+        <h2>Prevent bad data as early as possible.</h2>
+        <p>
+          The application can generate the spreadsheet template itself, including formatting, comments, help content, date/amount formats and controlled lists for accepted codes. The goal is to reduce invalid input before it reaches the transformation stage.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Validation</div>
+        <h2>Fail the batch, not a random record halfway through.</h2>
+        <p>
+          The generator validates the complete input before writing the final files. Errors are accumulated with row-level context so staff can correct the source data rather than receiving a partially generated submission.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Rules</div>
+      <h2>Normalization and business logic encoded once.</h2>
+      <div class="feature-list large">
+        <span>Identity / document validation</span>
+        <span>Address normalization</span>
+        <span>Dates and reporting periods</span>
+        <span>Argentine numeric formats</span>
+        <span>Debt-state rules</span>
+        <span>Days-in-arrears calculation</span>
+        <span>Duplicate detection</span>
+        <span>Alta / Modificación logic</span>
+      </div>
+      <p>
+        The transformation layer converts user-friendly spreadsheet values into the precise representation expected by the regulatory format, including monetary conversions and code mapping.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Fixed Width</div>
+        <h2>Exact byte length matters.</h2>
+        <p>
+          Records are constructed to the required fixed-width specification, including headers, body rows and trailers. Output is treated as bytes rather than assuming character count and file size are equivalent.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Integrity Check</div>
+        <h2>Verify the generated file, not just the algorithm.</h2>
+        <p>
+          After generation, the application reads the resulting TXT back and verifies the expected byte length for each logical record and the overall physical structure, catching encoding or line-ending problems before submission.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Distribution</div>
+      <h2>Built for non-technical users.</h2>
+      <p>
+        The tool has a desktop GUI and can be packaged as a Windows executable with PyInstaller. The user chooses the source spreadsheet, reporting options and output location without needing Python or command-line knowledge.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Takeaway</div>
+      <h2>The value is removing regulatory fragility from the human workflow.</h2>
+      <p>
+        This is not a simple Excel-to-TXT conversion. The useful part is translating a dense legacy specification into repeatable software: validate, normalize, apply rules, generate exact records and verify the final bytes before the file leaves the application.
+      </p>
+    </article>
+  </section>
 </CaseStudyLayout>

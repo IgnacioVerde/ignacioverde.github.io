@@ -4,16 +4,22 @@ import { capabilities } from '../data/projects';
 
 <section id="capabilities" class="section container">
   <div class="section-heading">
-    <h2>Capabilities</h2>
+    <div>
+      <div class="eyebrow compact">Capabilities</div>
+      <h2>Across the whole stack.</h2>
+    </div>
     <p>
-      My work usually lives in the space between application development,
-      infrastructure, integration and automation.
+      My work frequently crosses the boundary between application development,
+      infrastructure, integration, operations and automation.
     </p>
   </div>
 
   <div class="capability-grid">
-    {capabilities.map((capability) => (
-      <div class="capability"><span>{capability}</span></div>
+    {capabilities.map((capability, index) => (
+      <div class="capability">
+        <span class="capability-index">{String(index + 1).padStart(2, '0')}</span>
+        <span>{capability}</span>
+      </div>
     ))}
   </div>
 </section>

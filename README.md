@@ -1,26 +1,40 @@
 # Ignacio Verde — Portfolio
 
-Personal portfolio built with Astro.
+Personal software engineering portfolio built with Astro.
 
-## Structure
+## Highlights
 
-- `src/components` reusable UI components
-- `src/layouts` shared page layouts
-- `src/data` project metadata
-- `src/pages` homepage and case studies
-- `src/styles` global visual system
+- Reusable Astro components and layouts
+- Data-driven project cards
+- Dedicated case studies
+- Responsive dark visual system
+- GitHub Pages deployment through GitHub Actions
+- No Jekyll build path
 
-## Development
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build
+## Production build
 
 ```bash
 npm run build
+npm run preview
 ```
 
-The site is intended for static deployment on Cloudflare Pages.
+## GitHub Pages
+
+The repository is configured for the user-site URL:
+
+`https://ignacioverde.github.io`
+
+In GitHub, set **Settings → Pages → Source → GitHub Actions**.
+
+The workflow in `.github/workflows/deploy.yml` builds Astro and deploys the generated `dist/` folder.
+
+## Confidentiality
+
+Professional case studies are intentionally sanitized. Do not add credentials, client/user data, private endpoints, internal network details or source code covered by confidentiality obligations.

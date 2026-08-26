@@ -4,36 +4,125 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 
 <CaseStudyLayout
   title="Legacy Library Modernization"
-  subtitle="Recovery and modernization of a large bibliographic catalog from discontinued legacy software into a modern digital library."
+  subtitle="Recovery, normalization and migration of a 20,000+ item bibliographic catalog from discontinued legacy software into a modern digital library, followed by automated image association at scale."
   eyebrow="Confidential Project · Case Study"
-  stack={['Python', 'Omeka', 'ETL', 'Legacy Systems', 'Automation']}
+  stack={['Python', 'Omeka', 'ETL', 'Legacy Systems', 'Virtualization', 'Data Recovery', 'Automation']}
   confidential={true}
 >
-  <div class="case-grid">
-    <article class="case-panel">
-      <h2>Legacy Recovery</h2>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Starting Point</div>
+      <h2>A library trapped in discontinued software.</h2>
       <p>
-        The original catalog depended on discontinued tooling that required a Windows XP
-        virtual machine for export. A custom Python pipeline parsed, normalized and preserved
-        the legacy bibliographic data for migration.
+        The original catalog lived in AGUAPEY, a legacy library system whose tooling was no longer compatible with modern Windows environments. Exporting the source data required recreating an older working environment before any migration could begin.
       </p>
     </article>
 
     <article class="case-panel">
-      <h2>Data Migration</h2>
+      <div class="panel-kicker">Scale</div>
+      <h2>20,000+ bibliographic records.</h2>
       <p>
-        The recovery pipeline repaired legacy encodings, mapped bibliographic fields into a
-        modern MARC-like structure and preserved raw source fields for traceability and future migrations.
-      </p>
-    </article>
-
-    <article class="case-panel">
-      <h2>Media Automation</h2>
-      <p>
-        A separate workflow processes exported WhatsApp media, associates photos with inventory
-        numbers and supports bulk linking of book images to catalog records, reducing thousands
-        of manual operations to a batch process.
+        The goal was not merely to preserve a database dump. The records needed to become useful in a modern searchable digital library while retaining enough original information for traceability and future migrations.
       </p>
     </article>
   </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Recovery</div>
+        <h2>Recreate the environment first.</h2>
+      </div>
+      <p>Legacy migration started with operational archaeology, not a modern API.</p>
+    </div>
+
+    <div class="process-flow vertical-mobile">
+      <span>AGUAPEY legacy database</span><b>→</b><span>Windows XP virtual machine</span><b>→</b><span>TXT export</span><b>→</b><span>Python recovery pipeline</span><b>→</b><span>Normalized CSV / Excel</span><b>→</b><span>Omeka import</span>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Parsing</div>
+        <h2>Recovering records from an AGUAPEY/ISIS-style export.</h2>
+        <p>
+          The Python tooling separates records by MFN, parses numbered bibliographic fields and repeated subfields, and converts the source into a normalized structure suitable for daily consultation and migration.
+        </p>
+        <p>
+          Raw source fields are also preserved rather than discarded, keeping a path back to the original representation when a later migration needs more detail.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Encoding</div>
+        <h2>Old text encodings were part of the data problem.</h2>
+        <p>
+          Historical exports contained damaged characters and inconsistent encodings. The recovery pipeline tries multiple legacy encodings and applies targeted normalization for common corruption patterns while retaining raw fields for auditability.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Bibliographic Mapping</div>
+      <h2>Transforming proprietary legacy data into a modern migration model.</h2>
+      <p>
+        The parser extracts and normalizes title, subtitle, responsibility, authors, publication information, edition, physical description, notes, subjects, institutional location, inventory number, shelving location, copy information and provenance.
+      </p>
+      <div class="feature-list large">
+        <span>Titles & subtitles</span>
+        <span>Authors & contributors</span>
+        <span>Publisher / year</span>
+        <span>Subjects & categories</span>
+        <span>Inventory numbers</span>
+        <span>Shelf locations</span>
+        <span>Provenance</span>
+        <span>Raw source preservation</span>
+      </div>
+      <p>
+        The output includes a human-friendly Excel/CSV representation and a more technical MARC-like intermediate representation that can be mapped into a modern library platform. Omeka's native CSV import handles the final record ingestion.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Media Pipeline</div>
+        <h2>Thousands of book photos without thousands of manual uploads.</h2>
+      </div>
+      <p>The image workflow was designed around the way staff already worked instead of forcing a new capture process.</p>
+    </div>
+
+    <div class="case-grid two">
+      <article class="case-panel">
+        <h2>WhatsApp → normalized files</h2>
+        <p>
+          Staff photograph books and use the inventory number as the message caption. A processing script reads an exported WhatsApp chat with media, associates each image with its caption and produces files renamed to the corresponding inventory number.
+        </p>
+        <div class="process-flow">
+          <span>Photo + caption</span><b>→</b><span>WhatsApp export</span><b>→</b><span>Parser</span><b>→</b><span>inventory.jpg</span>
+        </div>
+      </article>
+
+      <article class="case-panel">
+        <h2>Normalized files → Omeka</h2>
+        <p>
+          A server-side automation then matches normalized image filenames to catalog records by inventory number. The workflow includes a dry-run stage before performing the actual association so bulk operations can be reviewed before changing thousands of records.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Takeaway</div>
+      <h2>Legacy modernization is often a chain of small, precise bridges.</h2>
+      <p>
+        This project combined virtualization, data recovery, encoding repair, bibliographic mapping, ETL, platform migration and workflow automation. The result turned a discontinued local catalog into a modern digital collection with a large photographic layer that would have been impractical to build manually.
+      </p>
+    </article>
+  </section>
 </CaseStudyLayout>
