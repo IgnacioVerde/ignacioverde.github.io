@@ -314,3 +314,36 @@ h1 { max-width:980px; margin:0; font-size:clamp(3rem,8vw,6.9rem); line-height:.9
   .vertical-mobile { align-items:flex-start; flex-direction:column; }
   .vertical-mobile b { transform:rotate(90deg); margin-left:10px; }
 }
+
+/* Language switch */
+.language-switch {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:38px;
+  height:32px;
+  padding:0 9px;
+  border-radius:999px;
+  border:1px solid rgba(124,108,255,.24);
+  background:rgba(124,108,255,.08);
+  color:#ddd7ff !important;
+  font:800 .76rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.08em;
+}
+.language-switch:hover {
+  border-color:rgba(54,212,255,.32);
+  background:rgba(54,212,255,.08);
+  color:white !important;
+}
+
+@media (max-width: 900px) {
+  .nav-links .nav-section-link { display:none; }
+  .nav-links { gap:14px; }
+}
+
+@media (max-width: 480px) {
+  .nav-links .github-link { display:none; }
+}
+@media (max-width: 900px) and (min-width: 481px) {
+  .nav-links .github-link { display:inline-flex; }
+}

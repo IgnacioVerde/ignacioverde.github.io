@@ -1,12 +1,29 @@
+---
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const isEs = lang === 'es';
+const base = isEs ? '/es' : '';
+const currentPath = Astro.url.pathname;
+const languageTarget = isEs
+  ? (currentPath === '/es' || currentPath === '/es/' ? '/' : currentPath.replace(/^\/es/, ''))
+  : (currentPath === '/' ? '/es/' : `/es${currentPath}`);
+---
+
 <header class="site-header">
   <nav class="container nav">
-    <a class="brand" href="/">Ignacio Verde</a>
+    <a class="brand" href={isEs ? '/es/' : '/'}>Ignacio Verde</a>
     <div class="nav-links">
-      <a href="/#work">Work</a>
-      <a href="/#capabilities">Capabilities</a>
-      <a href="/#additional">More</a>
-      <a href="/#about">About</a>
-      <a href="https://github.com/IgnacioVerde" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a class="nav-section-link" href={`${base}/#work`}>{isEs ? 'Proyectos' : 'Work'}</a>
+      <a class="nav-section-link" href={`${base}/#capabilities`}>{isEs ? 'Capacidades' : 'Capabilities'}</a>
+      <a class="nav-section-link" href={`${base}/#additional`}>{isEs ? 'Más' : 'More'}</a>
+      <a class="nav-section-link" href={`${base}/#about`}>{isEs ? 'Perfil' : 'About'}</a>
+      <a class="github-link" href="https://github.com/IgnacioVerde" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a class="language-switch" href={languageTarget} aria-label={isEs ? 'Switch to English' : 'Cambiar a español'}>
+        {isEs ? 'EN' : 'ES'}
+      </a>
     </div>
   </nav>
 </header>

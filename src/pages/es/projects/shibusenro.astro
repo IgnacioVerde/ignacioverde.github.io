@@ -1,0 +1,257 @@
+---
+import CaseStudyLayout from '../../../layouts/CaseStudyLayout.astro';
+
+const responsibilities = [
+  'Arquitectura del sistema',
+  'Backend Laravel',
+  'Implementación frontend',
+  'Integración de base de datos',
+  'Integración con rAthena',
+  'Infraestructura Docker',
+  'Administración Linux',
+  'Cloudflare y DNS',
+  'Integración de pagos',
+  'Launcher para Windows',
+  'Distribución de parches',
+  'Automatización de backups',
+  'Automatización de Discord',
+  'Despliegue y mantenimiento',
+];
+---
+
+<CaseStudyLayout
+  lang="es"
+  title="ShibusenRO"
+  subtitle="Una plataforma integral para un juego online que combina una aplicación moderna en Laravel, un backend MMORPG legacy, identidad compartida, pagos, una tienda web transaccional, distribución propia del cliente y operación cloud."
+  eyebrow="Proyecto personal · Case study principal"
+  stack={['Laravel', 'PHP', 'MariaDB', 'Docker', 'C#', '.NET 8', 'rAthena', 'Oracle Cloud', 'Caddy', 'Cloudflare', 'Mercado Pago', 'Python', 'PowerShell']}
+  links={[
+    { label: 'Comunidad', url: 'https://shibusen.online' },
+    { label: 'Plataforma RO', url: 'https://ro.shibusen.online' },
+  ]}
+>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Por qué lo construí</div>
+      <h2>Ingeniería web moderna alrededor de un juego online legacy.</h2>
+      <p>
+        ShibusenRO comenzó como un proyecto independiente de aprendizaje: quería entender qué hacía falta para lograr que un servidor de juego online existente y una aplicación web moderna funcionaran como un solo producto, en lugar de dos sistemas desconectados.
+      </p>
+      <p>
+        El alcance creció hasta incluir gestión de cuentas, integración con datos del juego, comercio web, procesamiento de pagos, actualización del cliente, identidad de comunidad, infraestructura contenerizada, backups y operación diaria en producción.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <div class="panel-kicker">Responsabilidad</div>
+      <h2>Un proyecto, ciclo de vida completo.</h2>
+      <p>
+        Diseñé y opero el proyecto de forma independiente. Eso incluye arquitectura de aplicación, frontend y backend, integración con rAthena, despliegue, administración Linux, DNS, reverse proxy, herramientas para el cliente del juego y mantenimiento.
+      </p>
+      <p>
+        Tecnologías existentes como rAthena son adaptadas y extendidas; no se presentan como código escrito desde cero.
+      </p>
+    </article>
+  </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Arquitectura</div>
+        <h2>Servicios separados por responsabilidad.</h2>
+      </div>
+      <p>El juego, las aplicaciones web y la capa de datos se comunican como servicios independientes en lugar de ejecutarse como un proceso monolítico.</p>
+    </div>
+
+    <div class="architecture-grid">
+      <article class="architecture-layer"><span>01</span><h3>Borde público</h3><p>Cloudflare · DNS · HTTPS</p></article>
+      <article class="architecture-layer"><span>02</span><h3>Capa web</h3><p>Caddy · Laravel Community · Laravel RO</p></article>
+      <article class="architecture-layer"><span>03</span><h3>Capa de juego</h3><p>rAthena Login · Char · Map</p></article>
+      <article class="architecture-layer"><span>04</span><h3>Capa de datos</h3><p>MariaDB · esquema compartido del juego</p></article>
+    </div>
+
+    <div class="case-panel case-section-gap">
+      <p>
+        Producción corre sobre una instancia Oracle Cloud Ampere A1 ARM64 con Ubuntu y Docker Compose. Los procesos login, character y map de rAthena están separados en contenedores individuales. Las dos aplicaciones Laravel funcionan como servicios web distintos, mientras MariaDB permanece dentro de la red privada de contenedores en lugar de exponerse como servicio público.
+      </p>
+      <p>
+        Caddy enruta los dominios web hacia las aplicaciones correspondientes y Cloudflare aporta la capa pública de DNS/HTTPS. Ragnarok utiliza conexiones TCP nativas, por lo que el tráfico del juego y el tráfico web siguen caminos diferentes por diseño.
+      </p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Capa de integración</div>
+        <h2>Laravel ↔ rAthena</h2>
+        <p>
+          La aplicación web no mantiene una copia ficticia de los datos de los jugadores. Una capa de servicio específica en Laravel trabaja contra el esquema real de rAthena para creación de cuentas, compatibilidad de credenciales, actualización de cuentas, chequeos de conectividad, personajes, guilds, mapas, niveles, estado online, zeny y rankings.
+        </p>
+        <p>
+          Esto convirtió un modelo SQL legacy de MMORPG en una capa de integración utilizable por la aplicación sin exigir que rAthena expusiera una API moderna.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Identidad</div>
+        <h2>Un único ecosistema de cuentas.</h2>
+        <p>
+          El registro web crea una cuenta compatible con el juego y los cambios en los datos de identidad se mantienen sincronizados con la cuenta subyacente de rAthena. La web actúa como experiencia moderna de cuenta sin convertirse en un silo de identidad separado.
+        </p>
+        <p>
+          Más adelante se incorporó Laravel Passport para que el foro de la comunidad pudiera autenticarse mediante OAuth usando la misma identidad de Shibusen.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Comercio</div>
+        <h2>Economía real del juego, límites transaccionales reales.</h2>
+      </div>
+      <p>La tienda web y el flujo de pagos operan sobre la misma economía de cuenta que utiliza el juego.</p>
+    </div>
+
+    <div class="case-grid two">
+      <article class="case-panel">
+        <h2>Shibusen Points compartidos</h2>
+        <p>
+          La web no inventa un segundo saldo cash. Lee y acredita el valor de puntos a nivel de cuenta utilizado por rAthena, de modo que los puntos adquiridos desde la web tienen efecto inmediato dentro del juego.
+        </p>
+        <div class="process-flow"><span>Web / Pago</span><b>→</b><span>Laravel</span><b>→</b><span>Saldo rAthena</span><b>→</b><span>Juego</span></div>
+      </article>
+
+      <article class="case-panel">
+        <h2>Compras transaccionales</h2>
+        <p>
+          Las compras se procesan dentro de transacciones de base de datos. El estado de la cuenta y del saldo queda bloqueado durante la operación, se verifican y descuentan fondos de forma condicional y el objeto se inserta en el storage del juego. Si un paso necesario falla, toda la transacción se revierte.
+        </p>
+        <p>
+          Esto protege contra entregas parciales y contra solicitudes concurrentes que intenten gastar dos veces el mismo saldo.
+        </p>
+      </article>
+    </div>
+
+    <article class="case-panel case-section-gap">
+      <div class="panel-kicker">Mercado Pago</div>
+      <h2>Integración de pagos más allá de un botón de checkout.</h2>
+      <p>
+        El flujo Laravel crea órdenes internas y preferencias de Mercado Pago Checkout Pro, asocia las referencias del proveedor con el usuario y la cuenta de juego correctos y procesa webhooks asíncronos antes de acreditar puntos.
+      </p>
+      <div class="feature-list">
+        <span>Validación HMAC del webhook</span>
+        <span>Validación de referencia externa</span>
+        <span>Control de monto y moneda</span>
+        <span>Verificación de estado aprobado</span>
+        <span>Chequeo test / producción</span>
+        <span>Idempotencia por payment ID</span>
+      </div>
+      <p>
+        Los estados idempotentes de las órdenes evitan que un mismo pago exitoso se acredite dos veces cuando el proveedor reintenta una notificación.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Distribución del cliente</div>
+        <h2>Launcher propio en C# / .NET 8.</h2>
+        <p>
+          Un launcher dedicado para Windows consulta un manifiesto de archivos en el servidor, determina qué archivos difieren de la versión esperada del cliente, descarga las actualizaciones necesarias y solamente inicia el juego después de sincronizarlo.
+        </p>
+        <p>Una utilidad PowerShell genera el manifiesto de distribución a partir del árbol del cliente.</p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Autoactualización</div>
+        <h2>Un segundo ejecutable actualiza el launcher.</h2>
+        <p>
+          Un ejecutable en uso no puede reemplazarse a sí mismo de forma segura. Por eso el launcher cuenta con una aplicación updater separada encargada de reemplazar sus binarios cuando existe una nueva versión.
+        </p>
+        <p>El flujo de actualización fue probado desde una instalación limpia y no solamente desde la máquina de desarrollo.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Ingeniería legacy</div>
+        <h2>Adaptación del ecosistema de cliente y servidor.</h2>
+        <p>
+          El proyecto exigió comprender el comportamiento de rAthena y un ecosistema de cliente MMORPG antiguo: compatibilidad de paquetes, recursos GRF, configuración Lua/LUB, información de ítems, mapas, traducciones, tooling WARP y assets del cliente.
+        </p>
+        <p>
+          También investigué el manejo interno de rAthena para sistemas como Cash Points, de modo que la capa moderna de aplicación se comportara de manera consistente con el propio servidor de juego.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Integración visual</div>
+        <h2>Assets del juego reutilizados en el catálogo web.</h2>
+        <p>
+          Los iconos de ítems fueron extraídos de los recursos GRF y mapeados en la tienda Laravel, permitiendo que el catálogo web use los mismos elementos visuales reconocibles que el jugador ve dentro del cliente.
+        </p>
+        <p>Esto conecta visualmente la experiencia web con el juego sin crear una identidad de catálogo separada.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Operaciones</div>
+        <h2>Responsabilidad de producción.</h2>
+        <p>
+          Administro el host Ubuntu, servicios Docker, networking, exposición de firewall, Caddy, Cloudflare/DNS, despliegues de aplicaciones y mantenimiento rutinario. La misma instancia cloud puede alojar otras cargas aisladas de la comunidad sin mezclar sus servicios de aplicación.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Backups</div>
+        <h2>Información para recuperación, no solamente un tar.</h2>
+        <p>
+          Un flujo de backup personalizado crea dumps de base de datos, verifica que no estén vacíos, archiva estado de aplicaciones y configuración, registra información de contenedores/Compose, genera checksums SHA-256 y rota backups antiguos.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Automatización de comunidad</div>
+      <h2>Integración de Discord y foro.</h2>
+      <p>
+        Tooling en Python/discord.py crea y mantiene roles, categorías, canales de texto/voz, permisos, áreas privadas y controles persistentes de verificación. La automatización está preparada para actualizar estructuras existentes cuando es posible, de modo que ejecuciones repetidas sirvan para mantener la configuración en lugar de duplicarla a ciegas.
+      </p>
+      <p>El foro se integra mediante OAuth basado en Laravel para compartir el mismo modelo de identidad con el resto del ecosistema.</p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Alcance</div>
+      <h2>Responsabilidades a lo largo del proyecto.</h2>
+      <div class="stack responsibility-stack">
+        {responsibilities.map((responsibility) => <span class="tag">{responsibility}</span>)}
+      </div>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Conclusión</div>
+      <h2>La parte difícil fue hacer que software de distintas épocas se comporte como un solo sistema.</h2>
+      <p>
+        ShibusenRO no es interesante por un framework en particular. Su valor está en el trabajo de integración: un servidor de juego legacy, una aplicación web moderna, un proveedor de pagos, un launcher de escritorio propio, sistemas de comunidad e infraestructura cloud deben coincidir en identidad, estado y comportamiento operativo.
+      </p>
+      <p>
+        Es el ejemplo más claro del tipo de ingeniería que disfruto: comprender un sistema existente con suficiente profundidad como para modernizar sus interfaces, automatizar sus puntos débiles y asumir responsabilidad por el camino completo hasta producción.
+      </p>
+    </article>
+  </section>
+</CaseStudyLayout>

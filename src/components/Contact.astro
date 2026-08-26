@@ -1,15 +1,22 @@
+---
+interface Props { lang?: 'en' | 'es'; }
+const { lang = 'en' } = Astro.props;
+const isEs = lang === 'es';
+---
 <section class="section container contact-section">
   <div class="contact-card">
     <div>
-      <div class="eyebrow compact">Contact & Code</div>
-      <h2>Want to see how I build?</h2>
+      <div class="eyebrow compact">{isEs ? 'Contacto y código' : 'Contact & Code'}</div>
+      <h2>{isEs ? '¿Querés ver cómo construyo?' : 'Want to see how I build?'}</h2>
       <p>
-        Public code is available on GitHub. Professional work is documented through sanitized case studies where source code cannot be disclosed.
+        {isEs
+          ? 'El código público está disponible en GitHub. El trabajo profesional se documenta mediante case studies sanitizados cuando el código fuente no puede divulgarse.'
+          : 'Public code is available on GitHub. Professional work is documented through sanitized case studies where source code cannot be disclosed.'}
       </p>
     </div>
     <div class="contact-actions">
-      <a class="button primary" href="https://github.com/IgnacioVerde" target="_blank" rel="noreferrer">GitHub Profile ↗</a>
-      <a class="button secondary" href="https://github.com/IgnacioVerde/ignacioverde.github.io" target="_blank" rel="noreferrer">Portfolio Source ↗</a>
+      <a class="button primary" href="https://github.com/IgnacioVerde" target="_blank" rel="noreferrer">{isEs ? 'Perfil de GitHub ↗' : 'GitHub Profile ↗'}</a>
+      <a class="button secondary" href="https://github.com/IgnacioVerde/ignacioverde.github.io" target="_blank" rel="noreferrer">{isEs ? 'Código del portfolio ↗' : 'Portfolio Source ↗'}</a>
     </div>
   </div>
 </section>

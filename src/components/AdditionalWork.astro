@@ -1,21 +1,24 @@
 ---
-import { additionalWork } from '../data/projects';
+import { additionalWork, additionalWorkEs } from '../data/projects';
+interface Props { lang?: 'en' | 'es'; }
+const { lang = 'en' } = Astro.props;
+const isEs = lang === 'es';
+const items = isEs ? additionalWorkEs : additionalWork;
 ---
-
 <section id="additional" class="section container">
   <div class="section-heading">
     <div>
-      <div class="eyebrow compact">Additional Work</div>
-      <h2>More than the flagship projects.</h2>
+      <div class="eyebrow compact">{isEs ? 'Trabajo adicional' : 'Additional Work'}</div>
+      <h2>{isEs ? 'Más que los proyectos principales.' : 'More than the flagship projects.'}</h2>
     </div>
     <p>
-      Smaller deployments, infrastructure responsibilities and targeted automation
-      that show the breadth of day-to-day engineering work.
+      {isEs
+        ? 'Implementaciones más pequeñas, responsabilidades de infraestructura y automatizaciones puntuales que muestran la amplitud del trabajo técnico cotidiano.'
+        : 'Smaller deployments, infrastructure responsibilities and targeted automation that show the breadth of day-to-day engineering work.'}
     </p>
   </div>
-
   <div class="additional-grid">
-    {additionalWork.map((item) => (
+    {items.map((item) => (
       <article class="additional-card">
         <h3>{item.title}</h3>
         <p>{item.description}</p>

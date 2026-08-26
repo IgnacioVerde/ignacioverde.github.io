@@ -1,0 +1,127 @@
+---
+import CaseStudyLayout from '../../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  lang="es"
+  title="Modernización de Biblioteca Legacy"
+  subtitle="Recuperación, normalización y migración de un catálogo bibliográfico de más de 20.000 ejemplares desde software discontinuado hacia una biblioteca digital moderna, seguida de asociación automatizada de imágenes a gran escala."
+  eyebrow="Proyecto confidencial · Case study"
+  stack={['Python', 'Omeka', 'ETL', 'Legacy Systems', 'Virtualization', 'Data Recovery', 'Automation']}
+  confidential={true}
+>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Punto de partida</div>
+      <h2>Una biblioteca atrapada en software discontinuado.</h2>
+      <p>
+        El catálogo original vivía en AGUAPEY, un sistema bibliotecario legacy cuyas herramientas ya no eran compatibles con entornos modernos de Windows. Extraer los datos de origen exigió recrear primero un entorno antiguo funcional antes de poder iniciar cualquier migración.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <div class="panel-kicker">Escala</div>
+      <h2>Más de 20.000 registros bibliográficos.</h2>
+      <p>
+        El objetivo no era simplemente conservar un dump. Los registros tenían que convertirse en una colección digital moderna, buscable y útil, manteniendo suficiente información original para trazabilidad y futuras migraciones.
+      </p>
+    </article>
+  </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Recuperación</div>
+        <h2>Primero hubo que recrear el entorno.</h2>
+      </div>
+      <p>La migración legacy empezó con arqueología operativa, no con una API moderna.</p>
+    </div>
+
+    <div class="process-flow vertical-mobile">
+      <span>Base legacy AGUAPEY</span><b>→</b><span>Máquina virtual Windows XP</span><b>→</b><span>Exportación TXT</span><b>→</b><span>Pipeline Python</span><b>→</b><span>CSV / Excel normalizado</span><b>→</b><span>Importación Omeka</span>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Parsing</div>
+        <h2>Recuperación desde una exportación estilo AGUAPEY/ISIS.</h2>
+        <p>
+          El tooling en Python separa registros por MFN, interpreta campos bibliográficos numerados y subcampos repetidos, y transforma la fuente en una estructura normalizada apta para consulta diaria y migración.
+        </p>
+        <p>
+          Los campos crudos también se conservan en lugar de descartarse, manteniendo un camino de regreso hacia la representación original si una migración posterior necesita mayor detalle.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Encoding</div>
+        <h2>Las codificaciones antiguas también eran parte del problema.</h2>
+        <p>
+          Las exportaciones históricas contenían caracteres dañados y codificaciones inconsistentes. El pipeline prueba múltiples encodings legacy y aplica normalización puntual para patrones comunes de corrupción, preservando al mismo tiempo los campos crudos para auditoría.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Mapeo bibliográfico</div>
+      <h2>Transformar datos propietarios legacy en un modelo moderno de migración.</h2>
+      <p>
+        El parser extrae y normaliza título, subtítulo, responsabilidad, autores, información de publicación, edición, descripción física, notas, materias, ubicación institucional, número de inventario, ubicación en estantería, información de ejemplar y procedencia.
+      </p>
+      <div class="feature-list large">
+        <span>Títulos y subtítulos</span>
+        <span>Autores y colaboradores</span>
+        <span>Editorial / año</span>
+        <span>Materias y categorías</span>
+        <span>Números de inventario</span>
+        <span>Ubicación en estantería</span>
+        <span>Procedencia</span>
+        <span>Preservación de datos crudos</span>
+      </div>
+      <p>
+        La salida incluye una representación amigable en Excel/CSV y otra representación intermedia MARC-like más técnica, preparada para mapearse a una plataforma bibliotecaria moderna. La importación nativa CSV de Omeka resuelve la carga final de registros.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Pipeline de imágenes</div>
+        <h2>Miles de fotos de libros sin miles de cargas manuales.</h2>
+      </div>
+      <p>El flujo fue diseñado alrededor de la forma en que el personal ya trabajaba, en lugar de imponer un proceso de captura completamente nuevo.</p>
+    </div>
+
+    <div class="case-grid two">
+      <article class="case-panel">
+        <h2>WhatsApp → archivos normalizados</h2>
+        <p>
+          El personal fotografía los libros y utiliza el número de inventario como caption del mensaje. Un script procesa un chat de WhatsApp exportado con archivos, asocia cada imagen con su texto y genera archivos renombrados con el número de inventario correspondiente.
+        </p>
+        <div class="process-flow"><span>Foto + caption</span><b>→</b><span>Exportación WhatsApp</span><b>→</b><span>Parser</span><b>→</b><span>inventario.jpg</span></div>
+      </article>
+
+      <article class="case-panel">
+        <h2>Archivos normalizados → Omeka</h2>
+        <p>
+          Una automatización del lado del servidor vincula luego los nombres normalizados de las imágenes con los registros del catálogo mediante el número de inventario. El flujo incluye una etapa de dry-run antes de realizar la asociación real, permitiendo revisar operaciones masivas antes de modificar miles de registros.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Conclusión</div>
+      <h2>Modernizar legacy suele ser construir una cadena de puentes pequeños y precisos.</h2>
+      <p>
+        Este proyecto combinó virtualización, recuperación de datos, reparación de encoding, mapeo bibliográfico, ETL, migración de plataforma y automatización de procesos. El resultado transformó un catálogo local discontinuado en una colección digital moderna con una gran capa fotográfica que habría sido impráctica de construir manualmente.
+      </p>
+    </article>
+  </section>
+</CaseStudyLayout>

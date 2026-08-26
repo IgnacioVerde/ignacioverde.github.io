@@ -1,17 +1,25 @@
 # Ignacio Verde — Portfolio
 
-Personal software engineering portfolio built with Astro.
+Professional bilingual portfolio built with Astro.
 
-## Highlights
+## Languages
 
-- Reusable Astro components and layouts
-- Data-driven project cards
-- Dedicated case studies
-- Responsive dark visual system
-- GitHub Pages deployment through GitHub Actions
-- No Jekyll build path
+- English: `/`
+- Español: `/es/`
 
-## Local development
+The language switch in the header preserves the current page whenever an equivalent translated route exists.
+
+## Main routes
+
+- `/projects/shibusenro`
+- `/projects/audiodrop`
+- `/projects/redgesta`
+- `/projects/library-modernization`
+- `/projects/academic-automation`
+- `/projects/inaes`
+- `/es/projects/...` for the Spanish versions
+
+## Development
 
 ```bash
 npm install
@@ -22,19 +30,10 @@ npm run dev
 
 ```bash
 npm run build
-npm run preview
 ```
 
-## GitHub Pages
+## Deployment
 
-The repository is configured for the user-site URL:
+The repository includes a GitHub Actions workflow for GitHub Pages.
 
-`https://ignacioverde.github.io`
-
-In GitHub, set **Settings → Pages → Source → GitHub Actions**.
-
-The workflow in `.github/workflows/deploy.yml` builds Astro and deploys the generated `dist/` folder.
-
-## Confidentiality
-
-Professional case studies are intentionally sanitized. Do not add credentials, client/user data, private endpoints, internal network details or source code covered by confidentiality obligations.
+Public site: https://ignacioverde.github.io/

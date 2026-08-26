@@ -1,21 +1,24 @@
 ---
-import { capabilities } from '../data/projects';
+import { capabilities, capabilitiesEs } from '../data/projects';
+interface Props { lang?: 'en' | 'es'; }
+const { lang = 'en' } = Astro.props;
+const isEs = lang === 'es';
+const items = isEs ? capabilitiesEs : capabilities;
 ---
-
 <section id="capabilities" class="section container">
   <div class="section-heading">
     <div>
-      <div class="eyebrow compact">Capabilities</div>
-      <h2>Across the whole stack.</h2>
+      <div class="eyebrow compact">{isEs ? 'Capacidades' : 'Capabilities'}</div>
+      <h2>{isEs ? 'A través de todo el stack.' : 'Across the whole stack.'}</h2>
     </div>
     <p>
-      My work frequently crosses the boundary between application development,
-      infrastructure, integration, operations and automation.
+      {isEs
+        ? 'Mi trabajo cruza con frecuencia los límites entre desarrollo de aplicaciones, infraestructura, integración, operaciones y automatización.'
+        : 'My work frequently crosses the boundary between application development, infrastructure, integration, operations and automation.'}
     </p>
   </div>
-
   <div class="capability-grid">
-    {capabilities.map((capability, index) => (
+    {items.map((capability, index) => (
       <div class="capability">
         <span class="capability-index">{String(index + 1).padStart(2, '0')}</span>
         <span>{capability}</span>

@@ -6,18 +6,36 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  lang?: 'en' | 'es';
 }
 
+const detectedLang: 'en' | 'es' = Astro.url.pathname === '/es' || Astro.url.pathname.startsWith('/es/') ? 'es' : 'en';
 const {
-  title = 'Ignacio Verde — Software Engineer',
-  description = 'Software Engineer focused on full-stack development, infrastructure, automation, legacy modernization and AI-assisted engineering workflows.',
+  lang = detectedLang,
+  title = lang === 'es' ? 'Ignacio Verde — Ingeniero de Software' : 'Ignacio Verde — Software Engineer',
+  description = lang === 'es'
+    ? 'Ingeniero de Software enfocado en desarrollo full-stack, infraestructura, automatización, modernización de sistemas legacy y flujos de ingeniería asistidos por IA.'
+    : 'Software Engineer focused on full-stack development, infrastructure, automation, legacy modernization and AI-assisted engineering workflows.',
 } = Astro.props;
 
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+const currentPath = Astro.url.pathname;
+const englishPath = currentPath === '/es' || currentPath === '/es/'
+  ? '/'
+  : currentPath.startsWith('/es/')
+    ? currentPath.slice(3)
+    : currentPath;
+const spanishPath = currentPath === '/'
+  ? '/es/'
+  : currentPath.startsWith('/es')
+    ? currentPath
+    : `/es${currentPath}`;
+const englishURL = Astro.site ? new URL(englishPath, Astro.site) : new URL(englishPath, Astro.url);
+const spanishURL = Astro.site ? new URL(spanishPath, Astro.site) : new URL(spanishPath, Astro.url);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -30,12 +48,15 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <meta property="og:url" content={canonicalURL} />
     <meta name="twitter:card" content="summary" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={englishURL} />
+    <link rel="alternate" hreflang="es" href={spanishURL} />
+    <link rel="alternate" hreflang="x-default" href={englishURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
-    <Header />
+    <Header lang={lang} />
     <slot />
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

@@ -1,0 +1,108 @@
+---
+import CaseStudyLayout from '../../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  lang="es"
+  title="RedGesta"
+  subtitle="Una plataforma educativa en producción que moderniza la presentación y el modelo de datos local alrededor de una API legacy de terceros, manteniendo al proveedor externo como fuente operativa de verdad donde corresponde."
+  eyebrow="Proyecto confidencial · Case study"
+  stack={['Laravel', 'PHP', 'Docker', 'MySQL', 'API Integration', 'Linux', 'Cloudflare', 'Email']}
+  confidential={true}
+>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Problema</div>
+      <h2>Una experiencia moderna sobre una dependencia legacy.</h2>
+      <p>
+        La plataforma necesitaba su propio sitio moderno, estructura de catálogo, buscador y flujo de captación de interesados, mientras las operaciones de cursos e inscripciones seguían dependiendo de un proveedor educativo externo y su API legacy.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <div class="panel-kicker">Mi rol</div>
+      <h2>Implementación end-to-end y operación en producción.</h2>
+      <p>
+        Me encargué de la aplicación Laravel, implementación frontend, integración de API, modelo de datos local, despliegue Docker, hosting Linux, configuración de dominio/DNS y mantenimiento continuo de infraestructura.
+      </p>
+    </article>
+  </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Estrategia de datos</div>
+        <h2>Persistir lo que debe ser local. Consultar en vivo lo que debe seguir siendo autoritativo.</h2>
+      </div>
+      <p>La decisión arquitectónica central fue separar los datos estructurales de los datos volátiles propiedad del proveedor.</p>
+    </div>
+
+    <div class="case-grid two">
+      <article class="case-panel">
+        <h2>Datos estructurales persistentes</h2>
+        <p>
+          Un proceso de sincronización completa importa entidades, cursos, carreras y la información necesaria para construir páginas buscables e indexables de forma local. Los registros nuevos se insertan y los existentes se actualizan porque el contenido de los cursos puede cambiar con el tiempo.
+        </p>
+        <p>La sincronización se ejecuta mediante Laravel Artisan y crea una representación operativa local en lugar de reconstruir cada página directamente desde la API remota.</p>
+      </article>
+
+      <article class="case-panel">
+        <h2>Datos volátiles en runtime</h2>
+        <p>
+          Los precios y promociones siguen perteneciendo al proveedor y se consultan al abrir una página porque pueden cambiar con frecuencia y RedGesta no es el sistema autoritativo para esos valores.
+        </p>
+        <p>Las referencias de imágenes pueden persistirse localmente aunque sigan apuntando a los assets del proveedor.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Camino de desacople</div>
+      <h2>Persistencia local como estrategia de salida futura.</h2>
+      <p>
+        Aunque la inscripción actualmente continúa a través de sistemas externos, materializar de forma continua el catálogo estructural dentro de una base propia de RedGesta reduce el acoplamiento a largo plazo. Si la plataforma necesita independizarse más adelante, las entidades centrales y el catálogo ya existen localmente en lugar de permanecer atrapados exclusivamente detrás de la API de terceros.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Experiencia de producto</div>
+        <h2>Páginas dedicadas y buscables para cursos.</h2>
+        <p>
+          El catálogo sincronizado alimenta una interfaz moderna con páginas individuales de instituciones/cursos, búsqueda local y una capa de presentación más limpia que la del sistema legacy de origen.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Flujo de interesados</div>
+        <h2>Captación sin reemplazar la infraestructura de inscripción.</h2>
+        <p>
+          Los formularios de contacto generan notificaciones por email para que el personal haga seguimiento de los interesados, mientras se mantienen enlaces hacia los sistemas operativos del proveedor para procesos que RedGesta todavía no gestiona directamente.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Operaciones</div>
+      <h2>Aplicación e infraestructura bajo la misma responsabilidad.</h2>
+      <p>
+        La aplicación Laravel corre contenerizada en hosting de producción. También administro Linux, actualizaciones, dominio/DNS, Cloudflare, HTTPS, exposición de servicios y configuración de correo institucional asociada a la plataforma.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Conclusión</div>
+      <h2>Modernizar sin fingir que la dependencia legacy no existe.</h2>
+      <p>
+        RedGesta es un proyecto práctico de integración: conservar el sistema externo donde sigue siendo autoritativo, construir un modelo local donde importan el control y el rendimiento, y crear un camino hacia mayor independencia sin forzar una reescritura total de una sola vez.
+      </p>
+    </article>
+  </section>
+</CaseStudyLayout>

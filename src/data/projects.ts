@@ -7,6 +7,7 @@ export type Project = {
   slug: string;
   title: string;
   type: 'Personal Project' | 'Open Source' | 'Confidential Project' | 'Professional Tool';
+  typeLabel?: string;
   description: string;
   stack: string[];
   status: string;
@@ -96,6 +97,87 @@ export const projects: Project[] = [
   },
 ];
 
+export const projectsEs: Project[] = [
+  {
+    slug: 'shibusenro',
+    title: 'ShibusenRO',
+    type: 'Personal Project',
+    typeLabel: 'Proyecto personal',
+    description:
+      'Plataforma integral para un juego online que integra Laravel, rAthena, identidad compartida, pagos, tienda web transaccional, herramientas propias de cliente e infraestructura cloud.',
+    stack: ['Laravel', 'Docker', 'MariaDB', 'C#', 'Oracle Cloud', 'Cloudflare'],
+    status: 'Case study principal',
+    featured: true,
+    links: [
+      { label: 'Comunidad', url: 'https://shibusen.online' },
+      { label: 'Plataforma RO', url: 'https://ro.shibusen.online' },
+    ],
+  },
+  {
+    slug: 'audiodrop',
+    title: 'AudioDrop',
+    type: 'Open Source',
+    typeLabel: 'Código abierto',
+    description:
+      'Software musical que abarca una aplicación de escritorio para Windows funcional y un proyecto Android en desarrollo activo, con reproducción, biblioteca y herramientas multimedia.',
+    stack: ['Python', 'PyQt6', 'Kotlin', 'Jetpack Compose', 'Media3', 'FFmpeg'],
+    status: 'Código abierto',
+    featured: true,
+    links: [
+      { label: 'GitHub Desktop', url: 'https://github.com/IgnacioVerde/audiodrop-desktop' },
+      { label: 'GitHub Android', url: 'https://github.com/IgnacioVerde/audiodrop-android' },
+    ],
+  },
+  {
+    slug: 'redgesta',
+    title: 'RedGesta',
+    type: 'Confidential Project',
+    typeLabel: 'Proyecto confidencial',
+    description:
+      'Plataforma educativa moderna en Laravel construida sobre una API legacy de terceros, combinando persistencia local, datos externos en tiempo real y operación en producción.',
+    stack: ['Laravel', 'Docker', 'MySQL', 'API Integration', 'Linux'],
+    status: 'Solo case study',
+    confidential: true,
+    featured: true,
+  },
+  {
+    slug: 'library-modernization',
+    title: 'Modernización de Biblioteca Legacy',
+    type: 'Confidential Project',
+    typeLabel: 'Proyecto confidencial',
+    description:
+      'Recuperación y migración de un catálogo bibliográfico de más de 20.000 ejemplares desde software discontinuado, seguida de procesamiento automatizado de imágenes y acceso digital moderno.',
+    stack: ['Python', 'Omeka', 'ETL', 'Legacy Systems', 'Automation'],
+    status: 'Solo case study',
+    confidential: true,
+    featured: true,
+  },
+  {
+    slug: 'academic-automation',
+    title: 'Automatización de Datos Académicos',
+    type: 'Confidential Project',
+    typeLabel: 'Proyecto confidencial',
+    description:
+      'Automatización interna para extraer, normalizar y consolidar información académica desde un sistema web legacy cerrado, sin acceso a API ni base de datos.',
+    stack: ['Python', 'Playwright', 'Pandas', 'Excel', 'Automation'],
+    status: 'Solo case study',
+    confidential: true,
+    featured: true,
+  },
+  {
+    slug: 'inaes',
+    title: 'Generador Regulatorio INAES',
+    type: 'Confidential Project',
+    typeLabel: 'Proyecto confidencial',
+    description:
+      'Flujo de escritorio que transforma planillas en archivos regulatorios de ancho fijo, con validación, normalización, reglas de negocio y verificación exacta a nivel de bytes.',
+    stack: ['Python', 'Excel', 'Validation', 'PyInstaller', 'Desktop'],
+    status: 'Solo case study',
+    confidential: true,
+    featured: true,
+  },
+];
+
 export const capabilities = [
   'Full-Stack Development',
   'Backend Architecture',
@@ -109,6 +191,21 @@ export const capabilities = [
   'Desktop Applications',
   'WordPress & CMS',
   'AI-Assisted Development',
+];
+
+export const capabilitiesEs = [
+  'Desarrollo Full-Stack',
+  'Arquitectura Backend',
+  'Administración Linux',
+  'Docker y Contenedores',
+  'Infraestructura Cloud',
+  'Automatización de Procesos',
+  'Modernización Legacy',
+  'Integración de APIs',
+  'Migración de Datos',
+  'Aplicaciones de Escritorio',
+  'WordPress y CMS',
+  'Desarrollo Asistido por IA',
 ];
 
 export const additionalWork: AdditionalWork[] = [
@@ -146,6 +243,45 @@ export const additionalWork: AdditionalWork[] = [
     title: 'Experimental AI Work',
     description:
       'Exploration of language-model architecture and training concepts through personal ALFA/AlfaLLM experiments, paused when compute requirements exceeded available infrastructure.',
+    stack: ['LLMs', 'Python', 'Research', 'Prototyping'],
+  },
+];
+
+export const additionalWorkEs: AdditionalWork[] = [
+  {
+    title: 'Plataformas Web Institucionales',
+    description:
+      'Sitios institucionales WordPress y estáticos en producción, flujos de publicación por categorías, operación continua de contenidos y administración de Moodle.',
+    stack: ['WordPress', 'Elementor', 'Moodle', 'HTML/CSS'],
+  },
+  {
+    title: 'Linux, DNS y Operaciones Web',
+    description:
+      'Administración de VPS, hardening de Linux, puertos y firewall, Cloudflare, DNS, HTTPS, reverse proxies, actualizaciones, dominios y servicios de correo institucional.',
+    stack: ['Linux', 'Cloudflare', 'DNS', 'Reverse Proxy', 'TLS'],
+  },
+  {
+    title: 'POS y Ecommerce',
+    description:
+      'Implementación de punto de venta con FacturaScripts, lector de códigos y ticketera, configuración regional para Argentina y tienda WooCommerce separada con Mercado Pago.',
+    stack: ['FacturaScripts', 'WooCommerce', 'Mercado Pago', 'POS'],
+  },
+  {
+    title: 'Automatización de Precios en Odoo',
+    description:
+      'Utilidad pequeña con Python y Odoo ORM para actualizar masivamente costos y precios de venta desde CSV en lugar de editar los productos uno por uno.',
+    stack: ['Python', 'Odoo ORM', 'CSV', 'ERP Automation'],
+  },
+  {
+    title: 'Automatización de Comunidades',
+    description:
+      'Automatización de Discord para roles, canales, permisos, verificación persistente y configuración repetible del servidor como parte de una plataforma de comunidad online.',
+    stack: ['Python', 'discord.py', 'Automation'],
+  },
+  {
+    title: 'Trabajo Experimental con IA',
+    description:
+      'Exploración de arquitectura y conceptos de entrenamiento de modelos de lenguaje mediante experimentos personales ALFA/AlfaLLM, pausados cuando los requisitos de cómputo superaron la infraestructura disponible.',
     stack: ['LLMs', 'Python', 'Research', 'Prototyping'],
   },
 ];

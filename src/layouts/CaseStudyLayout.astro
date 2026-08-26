@@ -9,23 +9,28 @@ interface Props {
   stack?: string[];
   confidential?: boolean;
   links?: ProjectLink[];
+  lang?: 'en' | 'es';
 }
 
 const {
   title,
   subtitle,
-  eyebrow = 'Case Study',
+  eyebrow,
   stack = [],
   confidential = false,
   links = [],
+  lang = 'en',
 } = Astro.props;
+
+const isEs = lang === 'es';
+const resolvedEyebrow = eyebrow ?? (isEs ? 'Case Study' : 'Case Study');
 ---
 
-<BaseLayout title={`${title} — Ignacio Verde`} description={subtitle}>
+<BaseLayout lang={lang} title={`${title} — Ignacio Verde`} description={subtitle}>
   <main>
     <section class="case-hero container">
-      <a class="back-link" href="/#work">← Back to selected work</a>
-      <div class="eyebrow">{eyebrow}</div>
+      <a class="back-link" href={isEs ? '/es/#work' : '/#work'}>{isEs ? '← Volver a proyectos' : '← Back to selected work'}</a>
+      <div class="eyebrow">{resolvedEyebrow}</div>
       <h1 class="case-title">{title}</h1>
       <p class="case-subtitle">{subtitle}</p>
 
@@ -47,8 +52,11 @@ const {
 
       {confidential && (
         <div class="confidential-note case-note">
-          <strong>Confidential Project — Case Study Only.</strong> This page intentionally omits sensitive data,
-          customer information, internal endpoints, credentials, source code and non-public infrastructure details.
+          {isEs ? (
+            <><strong>Proyecto confidencial — solo case study.</strong> Esta página omite deliberadamente datos sensibles, información de clientes, endpoints internos, credenciales, código fuente y detalles no públicos de infraestructura.</>
+          ) : (
+            <><strong>Confidential Project — Case Study Only.</strong> This page intentionally omits sensitive data, customer information, internal endpoints, credentials, source code and non-public infrastructure details.</>
+          )}
         </div>
       )}
     </section>

@@ -1,23 +1,24 @@
 ---
 import ProjectCard from './ProjectCard.astro';
-import { projects } from '../data/projects';
-
-const featuredProjects = projects.filter((project) => project.featured);
+import { projects, projectsEs } from '../data/projects';
+interface Props { lang?: 'en' | 'es'; }
+const { lang = 'en' } = Astro.props;
+const isEs = lang === 'es';
+const featuredProjects = (isEs ? projectsEs : projects).filter((project) => project.featured);
 ---
-
 <section id="work" class="section container">
   <div class="section-heading">
     <div>
-      <div class="eyebrow compact">Selected Work</div>
-      <h2>Systems, not exercises.</h2>
+      <div class="eyebrow compact">{isEs ? 'Proyectos seleccionados' : 'Selected Work'}</div>
+      <h2>{isEs ? 'Sistemas, no ejercicios.' : 'Systems, not exercises.'}</h2>
     </div>
     <p>
-      Production systems, open-source projects and confidential professional work
-      spanning modern applications, legacy infrastructure and operational automation.
+      {isEs
+        ? 'Sistemas en producción, proyectos open source y trabajo profesional confidencial que abarcan aplicaciones modernas, infraestructura legacy y automatización operativa.'
+        : 'Production systems, open-source projects and confidential professional work spanning modern applications, legacy infrastructure and operational automation.'}
     </p>
   </div>
-
   <div class="projects">
-    {featuredProjects.map((project) => <ProjectCard project={project} />)}
+    {featuredProjects.map((project) => <ProjectCard project={project} lang={lang} />)}
   </div>
 </section>

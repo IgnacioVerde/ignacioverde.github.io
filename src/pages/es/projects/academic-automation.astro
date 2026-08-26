@@ -1,0 +1,114 @@
+---
+import CaseStudyLayout from '../../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  lang="es"
+  title="Automatización de Datos Académicos"
+  subtitle="Un flujo interno en Python que extrae, normaliza y consolida información académica desde una aplicación web legacy cerrada donde no existe acceso directo a base de datos ni una API pública."
+  eyebrow="Proyecto confidencial · Case study"
+  stack={['Python', 'Playwright', 'BeautifulSoup', 'Pandas', 'OpenPyXL', 'Browser Automation', 'Oracle APEX']}
+  confidential={true}
+>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Problema</div>
+      <h2>Los datos existen, pero detrás de un flujo humano extremadamente lento.</h2>
+      <p>
+        El sistema de origen expone la información mediante una interfaz web que obliga a recorrer carreras y registros individuales uno por uno. No existe acceso directo a la base ni una API soportada para obtener la salida consolidada requerida.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <div class="panel-kicker">Restricción</div>
+      <h2>Automatización autorizada sin evadir controles de acceso.</h2>
+      <p>
+        El flujo utiliza una sesión de usuario autorizada. El login permanece manual porque la aplicación legacy reacciona mal frente a autenticación automatizada; una vez establecida la sesión, el tooling toma el control de la navegación y extracción repetitiva.
+      </p>
+    </article>
+  </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Arquitectura</div>
+        <h2>Automatización de navegador donde hace falta, requests autenticados donde conviene.</h2>
+      </div>
+      <p>La implementación mezcla técnicas en lugar de obligar a que cada página pase por renderizado completo del navegador.</p>
+    </div>
+
+    <div class="process-flow vertical-mobile">
+      <span>Login manual autorizado</span><b>→</b><span>Sesión Playwright</span><b>→</b><span>Detección de carreras</span><b>→</b><span>Extracción</span><b>→</b><span>Normalización</span><b>→</b><span>Salida Excel</span>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Navegación legacy</div>
+        <h2>Paginación y manejo de sesión personalizados.</h2>
+        <p>
+          La aplicación utiliza patrones de navegación legacy de Oracle APEX y una paginación poco trivial. La automatización detecta la sesión actual, normaliza links relativos, identifica las carreras mediante sus identificadores compuestos reales y evita loops por páginas repetidas.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Eficiencia</div>
+        <h2>Reutilizar el contexto autenticado del navegador.</h2>
+        <p>
+          Una vez establecida la sesión, las fichas individuales pueden consultarse mediante requests autenticados ligados al mismo contexto de Playwright. Esto evita renderizar una página completa por cada registro, preservando la sesión autorizada.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Confiabilidad</div>
+      <h2>Un scraper de larga duración tiene que sobrevivir a un sistema imperfecto.</h2>
+      <div class="feature-list large">
+        <span>Pausas / throttling configurables</span>
+        <span>Navegación consciente de sesión</span>
+        <span>Tolerancia a timeouts</span>
+        <span>Protección contra loops de paginación</span>
+        <span>Captura de errores por carrera</span>
+        <span>Persistencia incremental CSV</span>
+        <span>Guardados parciales XLSX</span>
+        <span>Snapshots HTML de debug</span>
+      </div>
+      <p>
+        El flujo evita deliberadamente sobrecargar el sistema de origen. Los resultados parciales se persisten durante la ejecución, por lo que un fallo al final de una corrida grande no descarta automáticamente horas de extracción exitosa.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Normalización</div>
+        <h2>Páginas crudas convertidas en un dataset consistente.</h2>
+        <p>
+          La capa de extracción parsea HTML, limpia valores inconsistentes, normaliza identificadores y consolida la información en planillas estructuradas que pueden filtrarse y utilizarse operativamente sin repetir el flujo del sistema fuente.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Segunda pasada</div>
+        <h2>Enriquecimiento con estado académico.</h2>
+        <p>
+          Un proceso complementario puede volver a consultar resúmenes académicos, derivar estados normalizados desde la representación legacy y fusionarlos nuevamente con el dataset consolidado usando identificadores compuestos de carrera más documentos normalizados.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Conclusión</div>
+      <h2>La automatización es especialmente valiosa cuando el sistema no puede reemplazarse.</h2>
+      <p>
+        Este proyecto no controla la aplicación legacy ni puede rediseñar su base de datos. El valor de ingeniería está en construir una capa de automatización respetuosa y tolerante a fallos alrededor de esas restricciones, transformando una tarea manual repetitiva en un flujo de datos repetible.
+      </p>
+    </article>
+  </section>
+</CaseStudyLayout>

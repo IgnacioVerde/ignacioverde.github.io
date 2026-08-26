@@ -1,0 +1,127 @@
+---
+import CaseStudyLayout from '../../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  lang="es"
+  title="Generador Regulatorio INAES"
+  subtitle="Un flujo de escritorio que convierte datos convencionales de planillas en archivos regulatorios de ancho fijo, encapsulando reglas de validación, normalización y requisitos exactos de salida a nivel de bytes."
+  eyebrow="Proyecto confidencial · Case study"
+  stack={['Python', 'Tkinter', 'ttkbootstrap', 'OpenPyXL', 'Excel', 'Fixed-Width Files', 'Validation', 'PyInstaller']}
+  confidential={true}
+>
+  <div class="case-grid two">
+    <article class="case-panel featured-panel">
+      <div class="panel-kicker">Problema</div>
+      <h2>Datos modernos de origen, salida regulatoria legacy.</h2>
+      <p>
+        Los sistemas operativos modernos pueden exportar información de deuda/cuentas como Excel o CSV, pero el organismo regulador exige formatos TXT rígidos definidos por anexos técnicos extensos, posiciones fijas de campos y longitudes exactas por registro.
+      </p>
+      <p>
+        Un solo campo mal formado o una longitud incorrecta puede provocar el rechazo completo de la presentación.
+      </p>
+    </article>
+
+    <article class="case-panel">
+      <div class="panel-kicker">Solución</div>
+      <h2>Meter la especificación dentro del software.</h2>
+      <p>
+        En lugar de exigir que el personal comprenda toda la especificación del archivo de texto, la aplicación de escritorio entrega una plantilla controlada, valida el contenido y produce automáticamente las salidas requeridas de Alta y Modificación.
+      </p>
+    </article>
+  </div>
+
+  <section class="case-section">
+    <div class="case-section-heading">
+      <div>
+        <div class="panel-kicker">Flujo</div>
+        <h2>De planilla a archivo regulatorio validado.</h2>
+      </div>
+      <p>La validación ocurre antes de generar y la integridad vuelve a verificarse después de generar.</p>
+    </div>
+
+    <div class="process-flow vertical-mobile">
+      <span>Plantilla / Excel</span><b>→</b><span>Validación</span><b>→</b><span>Normalización</span><b>→</b><span>Reglas de negocio</span><b>→</b><span>TXT ancho fijo</span><b>→</b><span>Verificación de bytes</span>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Diseño de entrada</div>
+        <h2>Prevenir datos inválidos lo antes posible.</h2>
+        <p>
+          La aplicación puede generar su propia plantilla de planilla, incluyendo formato, comentarios, ayuda, formatos de fechas/importes y listas controladas para códigos aceptados. El objetivo es reducir entradas inválidas antes de llegar a la etapa de transformación.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Validación</div>
+        <h2>Fallar el lote, no un registro cualquiera a mitad del proceso.</h2>
+        <p>
+          El generador valida la entrada completa antes de escribir los archivos finales. Los errores se acumulan con contexto de fila para que el personal pueda corregir la planilla de origen en lugar de recibir una presentación parcialmente generada.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Reglas</div>
+      <h2>Normalización y lógica de negocio codificadas una sola vez.</h2>
+      <div class="feature-list large">
+        <span>Validación de identidad / documento</span>
+        <span>Normalización de domicilio</span>
+        <span>Fechas y períodos informados</span>
+        <span>Formatos numéricos argentinos</span>
+        <span>Reglas de estado de deuda</span>
+        <span>Cálculo de días de atraso</span>
+        <span>Detección de duplicados</span>
+        <span>Lógica Alta / Modificación</span>
+      </div>
+      <p>
+        La capa de transformación convierte valores amigables de planilla a la representación precisa que espera el formato regulatorio, incluyendo conversiones monetarias y mapeo de códigos.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <div class="case-grid two">
+      <article class="case-panel">
+        <div class="panel-kicker">Ancho fijo</div>
+        <h2>La longitud exacta en bytes importa.</h2>
+        <p>
+          Los registros se construyen respetando la especificación fixed-width requerida, incluyendo cabeceras, filas de datos y trailers. La salida se trata como bytes en lugar de asumir que cantidad de caracteres y tamaño de archivo son equivalentes.
+        </p>
+      </article>
+
+      <article class="case-panel">
+        <div class="panel-kicker">Control de integridad</div>
+        <h2>Verificar el archivo generado, no solamente el algoritmo.</h2>
+        <p>
+          Después de generar, la aplicación vuelve a leer el TXT resultante y verifica la longitud esperada en bytes de cada registro lógico y la estructura física general, detectando problemas de encoding o saltos de línea antes de la presentación.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel">
+      <div class="panel-kicker">Distribución</div>
+      <h2>Construido para usuarios no técnicos.</h2>
+      <p>
+        La herramienta tiene una GUI de escritorio y puede empaquetarse como ejecutable de Windows con PyInstaller. El usuario selecciona la planilla de origen, opciones de presentación y ubicación de salida sin necesitar Python ni conocimientos de línea de comandos.
+      </p>
+    </article>
+  </section>
+
+  <section class="case-section">
+    <article class="case-panel closing-panel">
+      <div class="panel-kicker">Conclusión</div>
+      <h2>El valor está en sacar la fragilidad regulatoria del flujo humano.</h2>
+      <p>
+        Esto no es una simple conversión de Excel a TXT. La parte útil es traducir una especificación legacy densa a software repetible: validar, normalizar, aplicar reglas, generar registros exactos y verificar los bytes finales antes de que el archivo salga de la aplicación.
+      </p>
+    </article>
+  </section>
+</CaseStudyLayout>

@@ -1,34 +1,41 @@
+---
+interface Props { lang?: 'en' | 'es'; }
+const { lang = 'en' } = Astro.props;
+const isEs = lang === 'es';
+---
 <section id="about" class="section container">
   <div class="experience">
     <div>
-      <div class="eyebrow">How I work</div>
-      <h2 class="experience-title">End-to-end ownership.</h2>
+      <div class="eyebrow">{isEs ? 'Cómo trabajo' : 'How I work'}</div>
+      <h2 class="experience-title">{isEs ? 'Responsabilidad end-to-end.' : 'End-to-end ownership.'}</h2>
       <p class="experience-lead">
-        I am most useful when a problem does not fit neatly inside a single framework or job title.
+        {isEs
+          ? 'Soy más útil cuando un problema no encaja prolijamente dentro de un solo framework o puesto.'
+          : 'I am most useful when a problem does not fit neatly inside a single framework or job title.'}
       </p>
     </div>
 
     <div class="experience-text">
       <p>
-        I work across the complete lifecycle of software: 
-        <strong>architecture, implementation, integration, deployment, infrastructure and maintenance.</strong>
+        <span>{isEs ? 'Trabajo a lo largo del ciclo completo del software: ' : 'I work across the complete lifecycle of software: '}</span><strong>{isEs ? 'arquitectura, implementación, integración, despliegue, infraestructura y mantenimiento.' : 'architecture, implementation, integration, deployment, infrastructure and maintenance.'}</strong>
       </p>
 
       <p>
-        My experience includes modernizing legacy systems, automating repetitive operational processes,
-        building full-stack applications, managing Linux infrastructure, integrating payment providers,
-        migrating data and connecting systems that were never originally designed to work together.
+        {isEs
+          ? 'Mi experiencia incluye modernizar sistemas legacy, automatizar procesos operativos repetitivos, construir aplicaciones full-stack, administrar infraestructura Linux, integrar proveedores de pago, migrar datos y conectar sistemas que originalmente nunca fueron diseñados para trabajar juntos.'
+          : 'My experience includes modernizing legacy systems, automating repetitive operational processes, building full-stack applications, managing Linux infrastructure, integrating payment providers, migrating data and connecting systems that were never originally designed to work together.'}
       </p>
 
       <p>
-        I learned and worked as a programmer before modern coding assistants existed. Today I use LLMs
-        extensively as engineering accelerators for research, implementation, debugging, refactoring and
-        rapid iteration, while retaining architectural control, code understanding, testing and final validation.
+        {isEs
+          ? 'Aprendí y trabajé como programador antes de que existieran los asistentes modernos de código. Hoy uso LLMs de forma intensiva como aceleradores de ingeniería para investigación, implementación, debugging, refactoring e iteración rápida, manteniendo el control arquitectónico, la comprensión del código, las pruebas y la validación final.'
+          : 'I learned and worked as a programmer before modern coding assistants existed. Today I use LLMs extensively as engineering accelerators for research, implementation, debugging, refactoring and rapid iteration, while retaining architectural control, code understanding, testing and final validation.'}
       </p>
 
       <div class="confidential-note">
-        Some professional projects are covered by confidentiality obligations. Their case studies intentionally
-        omit sensitive data, customer information, internal infrastructure details and source code.
+        {isEs
+          ? 'Algunos proyectos profesionales están sujetos a obligaciones de confidencialidad. Sus case studies omiten deliberadamente datos sensibles, información de clientes, detalles internos de infraestructura y código fuente.'
+          : 'Some professional projects are covered by confidentiality obligations. Their case studies intentionally omit sensitive data, customer information, internal infrastructure details and source code.'}
       </div>
     </div>
   </div>

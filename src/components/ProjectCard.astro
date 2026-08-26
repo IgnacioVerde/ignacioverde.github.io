@@ -1,12 +1,8 @@
 ---
 import type { Project } from '../data/projects';
-
-interface Props {
-  project: Project;
-}
-
-const { project } = Astro.props;
-
+interface Props { project: Project; lang?: 'en' | 'es'; }
+const { project, lang = 'en' } = Astro.props;
+const isEs = lang === 'es';
 const tone = project.type === 'Open Source'
   ? 'tone-open'
   : project.type === 'Confidential Project'
@@ -14,29 +10,25 @@ const tone = project.type === 'Open Source'
     : project.type === 'Professional Tool'
       ? 'tone-tool'
       : 'tone-personal';
+const caseHref = isEs ? `/es/projects/${project.slug}` : `/projects/${project.slug}`;
 ---
-
 <article class={`project ${tone}`}>
   <div class="project-top">
-    <div class="project-type">{project.type}</div>
-    <div class="project-pill">{project.confidential ? 'Case Study Only' : project.status}</div>
+    <div class="project-type">{project.typeLabel ?? project.type}</div>
+    <div class="project-pill">{project.confidential ? (isEs ? 'Solo case study' : 'Case Study Only') : project.status}</div>
   </div>
-
   <h3>{project.title}</h3>
   <p class="project-description">{project.description}</p>
-
   <div class="stack">
     {project.stack.map((tech) => <span class="tag">{tech}</span>)}
   </div>
-
   <div class="project-footer">
-    <a class="project-main-link" href={`/projects/${project.slug}`}>View Case Study →</a>
-
+    <a class="project-main-link" href={caseHref}>{isEs ? 'Ver case study →' : 'View Case Study →'}</a>
     <div class="project-link-group">
       {project.links?.slice(0, 2).map((link) => (
         <a class="project-secondary-link" href={link.url} target="_blank" rel="noreferrer">{link.label} ↗</a>
       ))}
-      {project.confidential && <span class="locked">Private source</span>}
+      {project.confidential && <span class="locked">{isEs ? 'Código privado' : 'Private source'}</span>}
     </div>
   </div>
 </article>
