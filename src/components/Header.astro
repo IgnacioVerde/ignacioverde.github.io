@@ -21,8 +21,25 @@ const languageTarget = isEs
       <a class="nav-section-link" href={`${base}/#additional`}>{isEs ? 'Más' : 'More'}</a>
       <a class="nav-section-link" href={`${base}/#about`}>{isEs ? 'Perfil' : 'About'}</a>
       <a class="github-link" href="https://github.com/IgnacioVerde" target="_blank" rel="noreferrer">GitHub ↗</a>
-      <a class="language-switch" href={languageTarget} aria-label={isEs ? 'Switch to English' : 'Cambiar a español'}>
-        {isEs ? 'EN' : 'ES'}
+      <div class="language-switch">
+  <a
+    href={isEs ? languageTarget : '#'}
+    class={!isEs ? 'active' : ''}
+    aria-current={!isEs ? 'page' : undefined}
+  >
+    EN
+  </a>
+
+  <span>/</span>
+
+  <a
+    href={isEs ? '#' : languageTarget}
+    class={isEs ? 'active' : ''}
+    aria-current={isEs ? 'page' : undefined}
+  >
+    ES
+  </a>
+</div>
       </a>
     </div>
   </nav>
