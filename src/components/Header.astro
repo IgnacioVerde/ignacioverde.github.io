@@ -4,43 +4,84 @@ interface Props {
 }
 
 const { lang = 'en' } = Astro.props;
+
 const isEs = lang === 'es';
 const base = isEs ? '/es' : '';
+
 const currentPath = Astro.url.pathname;
+
 const languageTarget = isEs
-  ? (currentPath === '/es' || currentPath === '/es/' ? '/' : currentPath.replace(/^\/es/, ''))
-  : (currentPath === '/' ? '/es/' : `/es${currentPath}`);
+  ? (
+      currentPath === '/es' || currentPath === '/es/'
+        ? '/'
+        : currentPath.replace(/^\/es/, '')
+    )
+  : (
+      currentPath === '/'
+        ? '/es/'
+        : `/es${currentPath}`
+    );
+
+const englishUrl = isEs ? languageTarget : currentPath;
+const spanishUrl = isEs ? currentPath : languageTarget;
 ---
 
 <header class="site-header">
   <nav class="container nav">
-    <a class="brand" href={isEs ? '/es/' : '/'}>Ignacio Verde</a>
+    <a class="brand" href={isEs ? '/es/' : '/'}>
+      Ignacio Verde
+    </a>
+
     <div class="nav-links">
-      <a class="nav-section-link" href={`${base}/#work`}>{isEs ? 'Proyectos' : 'Work'}</a>
-      <a class="nav-section-link" href={`${base}/#capabilities`}>{isEs ? 'Capacidades' : 'Capabilities'}</a>
-      <a class="nav-section-link" href={`${base}/#additional`}>{isEs ? 'Más' : 'More'}</a>
-      <a class="nav-section-link" href={`${base}/#about`}>{isEs ? 'Perfil' : 'About'}</a>
-      <a class="github-link" href="https://github.com/IgnacioVerde" target="_blank" rel="noreferrer">GitHub ↗</a>
-      <div class="language-switch">
-  <a
-    href={isEs ? languageTarget : '#'}
-    class={!isEs ? 'active' : ''}
-    aria-current={!isEs ? 'page' : undefined}
-  >
-    EN
-  </a>
-
-  <span>/</span>
-
-  <a
-    href={isEs ? '#' : languageTarget}
-    class={isEs ? 'active' : ''}
-    aria-current={isEs ? 'page' : undefined}
-  >
-    ES
-  </a>
-</div>
+      <a class="nav-section-link" href={`${base}/#work`}>
+        {isEs ? 'Proyectos' : 'Work'}
       </a>
+
+      <a class="nav-section-link" href={`${base}/#capabilities`}>
+        {isEs ? 'Capacidades' : 'Capabilities'}
+      </a>
+
+      <a class="nav-section-link" href={`${base}/#additional`}>
+        {isEs ? 'Más' : 'More'}
+      </a>
+
+      <a class="nav-section-link" href={`${base}/#about`}>
+        {isEs ? 'Perfil' : 'About'}
+      </a>
+
+      <a
+        class="github-link"
+        href="https://github.com/IgnacioVerde"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub ↗
+      </a>
+
+      <div
+        class="language-switch"
+        aria-label={isEs ? 'Selector de idioma' : 'Language selector'}
+      >
+        <a
+          class:list={['language-option', { active: !isEs }]}
+          href={englishUrl}
+          aria-current={!isEs ? 'page' : undefined}
+          aria-label="English"
+        >
+          EN
+        </a>
+
+        <span class="language-divider" aria-hidden="true">/</span>
+
+        <a
+          class:list={['language-option', { active: isEs }]}
+          href={spanishUrl}
+          aria-current={isEs ? 'page' : undefined}
+          aria-label="Español"
+        >
+          ES
+        </a>
+      </div>
     </div>
   </nav>
 </header>
