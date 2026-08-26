@@ -1,22 +1,62 @@
 ---
-interface Props { lang?: 'en' | 'es'; }
+interface Props {
+  lang?: 'en' | 'es';
+}
+
 const { lang = 'en' } = Astro.props;
 const isEs = lang === 'es';
+
+const cvUrl = isEs
+  ? '/cv/Ignacio_Verde_CV_ES.pdf'
+  : '/cv/Ignacio_Verde_CV_EN.pdf';
 ---
+
 <section class="section container contact-section">
   <div class="contact-card">
     <div>
-      <div class="eyebrow compact">{isEs ? 'Contacto y código' : 'Contact & Code'}</div>
-      <h2>{isEs ? '¿Querés ver cómo construyo?' : 'Want to see how I build?'}</h2>
+      <div class="eyebrow compact">
+        {isEs ? 'Contacto y perfiles' : 'Contact & Profiles'}
+      </div>
+
+      <h2>
+        {isEs
+          ? '¿Querés saber más sobre mi trabajo?'
+          : 'Want to know more about my work?'}
+      </h2>
+
       <p>
         {isEs
-          ? 'El código público está disponible en GitHub. El trabajo profesional se documenta mediante case studies sanitizados cuando el código fuente no puede divulgarse.'
-          : 'Public code is available on GitHub. Professional work is documented through sanitized case studies where source code cannot be disclosed.'}
+          ? 'Podés revisar mi código público en GitHub, conocer mi experiencia profesional en LinkedIn o descargar mi CV actualizado.'
+          : 'You can review my public code on GitHub, explore my professional experience on LinkedIn, or download my updated resume.'}
       </p>
     </div>
+
     <div class="contact-actions">
-      <a class="button primary" href="https://github.com/IgnacioVerde" target="_blank" rel="noreferrer">{isEs ? 'Perfil de GitHub ↗' : 'GitHub Profile ↗'}</a>
-      <a class="button secondary" href="https://github.com/IgnacioVerde/ignacioverde.github.io" target="_blank" rel="noreferrer">{isEs ? 'Código del portfolio ↗' : 'Portfolio Source ↗'}</a>
+      <a
+        class="button primary"
+        href={cvUrl}
+        download
+      >
+        {isEs ? 'Descargar CV ↓' : 'Download CV ↓'}
+      </a>
+
+      <a
+        class="button secondary"
+        href="https://www.linkedin.com/in/ignacio-verde-34a812300/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        LinkedIn ↗
+      </a>
+
+      <a
+        class="button secondary"
+        href="https://github.com/IgnacioVerde"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub ↗
+      </a>
     </div>
   </div>
 </section>
